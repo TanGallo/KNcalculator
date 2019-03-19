@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    tools:context=".ProjectsListFragment">
+
+    <ImageView
+        android:id="@+id/projectImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/project_image"
+        />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/projectImageView"
+        android:layout_gravity="fill_horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/projectImageView"
+        android:layout_toStartOf="@id/editListItemButton"
+        android:contentDescription="@string/view_this_list_item"
+        android:textSize="25sp"
+        android:textColor="@color/colorTeal5"/>
+
+    <ImageButton
+        android:id="@+id/editListItemButton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_toStartOf="@id/deleteListItemButton"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/edit_this_list_item"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_edit_teal_24dp" />
+
+    <ImageButton
+        android:id="@+id/deleteListItemButton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/delete_this_list_item"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_delete_teal_24dp" />
+
+</RelativeLayout>

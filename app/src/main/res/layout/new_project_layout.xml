@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_project_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewProjectsLayout">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="70dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/insertProjectImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="10dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/project_image_button_label_hint"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_camera_green" />
+
+                <EditText
+                    android:id="@+id/projectNameText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/insertProjectImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rectangle"
+                    android:gravity="fill_horizontal"
+                    android:hint="@string/project_name_label_hint"
+                    android:inputType="text"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/radioGroupLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/projectNameText"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/cmInchRadioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/cmRadioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="@string/centimetres"
+                            android:textSize="18sp" />
+
+                        <RadioButton
+                            android:id="@+id/inchRadioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="@string/inches"
+                            android:textSize="18sp" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/newProjectLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/radioGroupLayout">
+
+                    <TextView
+                        android:id="@+id/gInfoLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/pattern_gauge_info_hint"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/aboveAnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/gInfoLabel"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/pwsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/rectangle"
+                                android:inputType="number"
+                                android:minWidth="50dp"
+                                android:textSize="18sp"
+                                tools:ignore="LabelFor" />
+
+                            <TextView
+                                android:id="@+id/StLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:layout_toEndOf="@id/pwsText"
+                                android:text="@string/stitches_equals_label"
+                                android:textSize="18sp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/pwiText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/rectangle"
+                                android:inputType="numberDecimal"
+                                android:minWidth="50dp"
+                                android:textSize="18sp"
+                                tools:ignore="LabelFor" />
+
+                            <TextView
+                                android:id="@+id/inchesLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:layout_toEndOf="@id/pwiText"
+                                android:text="@string/inches_label"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/cmLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:layout_toEndOf="@id/pwiText"
+                                android:text="@string/cm_label"
+                                android:textSize="18sp" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/andLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aboveAnd"
+                        android:layout_marginStart="90dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/and_label"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/plrText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/andLabel"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/rectangle"
+                        android:inputType="number"
+                        android:minWidth="50dp"
+                        android:textSize="18sp"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/rEqLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/andLabel"
+                        android:layout_margin="10dp"
+                        android:layout_toEndOf="@id/plrText"
+                        android:text="@string/rows_equals_label"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/pliText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/andLabel"
+                        android:layout_toEndOf="@id/rEqLabel"
+                        android:background="@drawable/rectangle"
+                        android:inputType="numberDecimal"
+                        android:minWidth="50dp"
+                        android:textSize="18sp"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/inches2Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/andLabel"
+                        android:layout_margin="10dp"
+                        android:layout_toEndOf="@id/pliText"
+                        android:text="@string/inches_label"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/cm2Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/andLabel"
+                        android:layout_margin="10dp"
+                        android:layout_toEndOf="@id/pliText"
+                        android:text="@string/cm_label"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/urGInfoLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/plrText"
+                        android:layout_margin="10dp"
+                        android:text="@string/your_pattern_gauge_info_hint"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/aboveButtons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/urGInfoLabel">
+
+                        <RelativeLayout
+                            android:id="@+id/relLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/gwiText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/rectangle"
+                            android:inputType="numberDecimal"
+                            android:minWidth="50dp"
+                            android:textSize="18sp"
+                            tools:ignore="LabelFor" />
+
+                        <TextView
+                            android:id="@+id/inchesTimesLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toEndOf="@id/gwiText"
+                            android:text="@string/width_inches_times_label"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/cmTimesLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toEndOf="@id/gwiText"
+                            android:text="@string/width_cm_times_label"
+                            android:textSize="18sp" />
+
+                        </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/relLayout">
+
+                        <EditText
+                            android:id="@+id/gliText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:background="@drawable/rectangle"
+                            android:inputType="numberDecimal"
+                            android:minWidth="50dp"
+                            android:textSize="18sp"
+                            tools:ignore="LabelFor" />
+
+                        <TextView
+                            android:id="@+id/inches3Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toEndOf="@id/gliText"
+                            android:text="@string/length_inches_label"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/cm3Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toEndOf="@id/gliText"
+                            android:text="@string/length_cm_label"
+                            android:textSize="18sp" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/saveProjectButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aboveButtons"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/colorTeal3"
+                        android:gravity="center"
+                        android:text="@string/save_project"
+                        android:textColor="@color/colorGreen2"
+                        tools:ignore="UnusedAttribute" />
+
+                    <Button
+                        android:id="@+id/cancelButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aboveButtons"
+                        android:layout_alignParentStart="true"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/colorTeal3"
+                        android:gravity="center"
+                        android:text="@string/cancel"
+                        android:textColor="@color/colorGreen2"
+                        tools:ignore="UnusedAttribute" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreen2">
+
+    <ImageView
+        android:id="@+id/slide2Image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_add_white"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/slide2Description" />
+
+    <TextView
+        android:id="@+id/slide2Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/slide2Title"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="110dp"
+        android:layout_toEndOf="@id/slide2Image"
+        />
+
+    <TextView
+        android:id="@+id/slide2Description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/slide2Description"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/slide2Image"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        />
+
+</RelativeLayout>

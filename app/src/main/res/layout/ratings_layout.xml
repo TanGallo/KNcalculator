@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewProjectsLayout">
+
+    <TextView
+        android:id="@+id/ratingsLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/enjoying_question"
+        android:textColor="@color/colorTeal5"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/enjoyNoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/colorTeal3"
+            android:gravity="center"
+            android:text="@string/no"
+            android:textColor="@color/colorGreen2"
+            tools:ignore="UnusedAttribute"/>
+
+
+        <Button
+            android:id="@+id/enjoyNotSureButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/colorTeal3"
+            android:gravity="center"
+            android:text="@string/not_sure_yet"
+            android:textColor="@color/colorGreen2"
+            tools:ignore="UnusedAttribute"/>
+
+        <Button
+            android:id="@+id/enjoyYesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/colorTeal3"
+            android:gravity="center"
+            android:text="@string/yes"
+            android:textColor="@color/colorGreen2"
+            tools:ignore="UnusedAttribute"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ratingsYesLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/rate_it_question"
+        android:textColor="@color/colorTeal5"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/rateNoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/colorTeal3"
+            android:gravity="center"
+            android:text="@string/not_now"
+            android:textColor="@color/colorGreen2"
+            tools:ignore="UnusedAttribute"/>
+
+
+        <Button
+            android:id="@+id/rateYesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/colorTeal3"
+            android:gravity="center"
+            android:text="@string/sure"
+            android:textColor="@color/colorGreen2"
+            tools:ignore="UnusedAttribute"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ratingsNoLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/email_question"
+        android:textColor="@color/colorTeal5"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/emailNoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/colorTeal3"
+            android:gravity="center"
+            android:text="@string/not_now"
+            android:textColor="@color/colorGreen2"
+            tools:ignore="UnusedAttribute"/>
+
+
+        <Button
+            android:id="@+id/emailYesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/colorTeal3"
+            android:gravity="center"
+            android:text="@string/sure"
+            android:textColor="@color/colorGreen2"
+            tools:ignore="UnusedAttribute" />
+
+    </LinearLayout>
+
+    <TextView
+    android:id="@+id/temp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:textSize="20sp"
+    />
+
+    <TextView
+        android:id="@+id/tempE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"
+        />
+
+
+</LinearLayout>

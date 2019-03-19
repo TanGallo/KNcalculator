@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/help_container3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpLayout">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/help3TextA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/use_calculator"
+                android:textSize="30sp"
+                android:textColor="@color/colorTeal3"
+                />
+
+            <TextView
+                android:id="@+id/help3TextB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/use_pull_down_menu"
+                android:textSize="20sp"
+                android:textColor="@color/colorTeal5"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/help3TextO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/choose"
+                android:textSize="20sp"
+                android:textColor="@color/colorTeal5"
+                android:textStyle="bold"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/castOnExLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/not_sure_ex_1"
+                android:textSize="20sp"
+                android:textColor="@color/colorOrange2"
+                />
+
+                <ImageButton
+                    android:id="@+id/castOnExButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/castOnExLabel"
+                    android:background="@drawable/rectangle"
+                    android:contentDescription="@string/not_sure_ex_1_button"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_arrow_drop_down_orange_24dp" />
+
+                <ImageButton
+                    android:id="@+id/castOnExButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/castOnExLabel"
+                    android:background="@drawable/rectangle"
+                    android:contentDescription="@string/not_sure_ex_collapse"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_arrow_drop_up_orange_24dp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/castOnExText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/not_sure_ex_1b"
+                android:textColor="@color/colorOrange2"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/incDecExLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_toStartOf="@id/incDecExButton1"
+                    android:text="@string/not_sure_ex_1c"
+                    android:textColor="@color/colorOrange2"
+                    android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/incDecExButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_arrow_drop_down_orange_24dp"
+                android:background="@drawable/rectangle"
+                android:contentDescription="@string/not_sure_ex_1_button" />
+
+                <ImageButton
+                    android:id="@+id/incDecExButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/rectangle"
+                    android:contentDescription="@string/not_sure_ex_collapse"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_arrow_drop_up_orange_24dp" />
+
+        </RelativeLayout>
+
+            <TextView
+                android:id="@+id/incDecExText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/not_sure_ex_1d"
+                android:textColor="@color/colorOrange2"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/rowExLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/not_sure_ex_1e"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorOrange2"
+                    />
+
+                <ImageButton
+                    android:id="@+id/rowExButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/rowExLabel"
+                    android:background="@drawable/rectangle"
+                    android:contentDescription="@string/not_sure_ex_1_button"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_arrow_drop_down_orange_24dp" />
+
+                <ImageButton
+                    android:id="@+id/rowExButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/rowExLabel"
+                    android:background="@drawable/rectangle"
+                    android:contentDescription="@string/not_sure_ex_collapse"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_arrow_drop_up_orange_24dp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/rowExText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/not_sure_ex_1f"
+                android:textColor="@color/colorOrange2"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/lengthExLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/not_sure_ex_2"
+                android:textSize="20sp"
+                android:textColor="@color/colorOrange2"
+                />
+
+                <ImageButton
+                    android:id="@+id/lengthExButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/lengthExLabel"
+                    android:background="@drawable/rectangle"
+                    android:contentDescription="@string/not_sure_ex_2_button"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_arrow_drop_down_orange_24dp" />
+
+                <ImageButton
+                    android:id="@+id/lengthExButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/lengthExLabel"
+                    android:background="@drawable/rectangle"
+                    android:contentDescription="@string/not_sure_ex_collapse"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_arrow_drop_up_orange_24dp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/lengthExText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/not_sure_ex_2b"
+                android:textColor="@color/colorOrange2"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/help3TextC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/decide"
+                android:textSize="20sp"
+                android:textColor="@color/colorTeal5"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/help3TextG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/special_conditions"
+                android:textSize="20sp"
+                android:textColor="@color/colorTeal5"
+                android:textStyle="bold"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/help3TextH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_toStartOf="@id/exButton6"
+                android:text="@string/multiple_ex_1"
+                android:textSize="20sp"
+                android:textColor="@color/colorOrange2"
+                />
+
+                <ImageButton
+                    android:id="@+id/exButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_arrow_drop_down_orange_24dp"
+                    android:background="@drawable/rectangle"
+                    android:contentDescription="@string/multiple_ex1_button" />
+
+                <ImageButton
+                    android:id="@+id/exButton6b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_arrow_drop_up_orange_24dp"
+                    android:background="@drawable/rectangle"
+                    android:contentDescription="@string/not_sure_ex_collapse" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/help3TextH2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/multiple_ex_1b"
+                android:textSize="20sp"
+                android:textColor="@color/colorOrange2"
+                />
+
+            <LinearLayout
+                android:id="@+id/ex4Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/multRadioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/multiple_of_label"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/numberLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/rectangle"
+                android:hint="@string/multiple_base_hint"
+                android:textSize="18sp"
+                android:text="@string/_8"/>
+
+            <TextView
+                android:id="@+id/plusLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/rectangle"
+                android:hint="@string/multiple_plus_hint"
+                android:textSize="18sp"
+                android:text="@string/_2"/>
+
+            <TextView
+                android:id="@+id/minusLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/rectangle"
+                android:hint="@string/multiple_minus_hint"
+                android:textSize="18sp"
+                android:text=""/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/help3TextI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_toStartOf="@id/exButton7"
+                android:text="@string/multiple_ex_2"
+                android:textSize="20sp"
+                android:textColor="@color/colorOrange2"
+                />
+
+            <ImageButton
+                android:id="@+id/exButton7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_arrow_drop_down_orange_24dp"
+                android:background="@drawable/rectangle"
+                android:contentDescription="@string/multiple_ex2_button" />
+
+            <ImageButton
+                android:id="@+id/exButton7b"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_arrow_drop_up_orange_24dp"
+                android:background="@drawable/rectangle"
+                android:contentDescription="@string/not_sure_ex_collapse" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/help3TextI2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/multiple_ex_2b"
+                android:textSize="20sp"
+                android:textColor="@color/colorOrange2"
+                />
+
+            <LinearLayout
+                android:id="@+id/ex5Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/multRadioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/multiple_of_label"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/numberLabel3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/rectangle"
+                android:hint="@string/multiple_base_hint"
+                android:textSize="18sp"
+                android:text="@string/_9"/>
+
+            <TextView
+                android:id="@+id/plusLabel3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/rectangle"
+                android:hint="@string/multiple_plus_hint"
+                android:textSize="18sp"
+                android:text=""/>
+
+            <TextView
+                android:id="@+id/minusLabel3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/rectangle"
+                android:hint="@string/multiple_minus_hint"
+                android:textSize="18sp"
+                android:text="@string/_3"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/help3TextJ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/leave_multiple_empty"
+                android:textSize="20sp"
+                android:textColor="@color/colorGreen2"
+                />
+
+
+            <TextView
+                android:id="@+id/help3TextM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="70dp"
+                android:text="@string/click_calculate"
+                android:textSize="20sp"
+                android:textColor="@color/colorTeal5"
+                android:textStyle="bold"
+                />
+
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "201793837441",
+    "firebase_url": "https://knitfits-602ed.firebaseio.com",
+    "project_id": "knitfits-602ed",
+    "storage_bucket": "knitfits-602ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201793837441:android:90cbf6ca38062a71",
+        "android_client_info": {
+          "package_name": "ca.gotchasomething.knitfits"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201793837441-pemfkc5kv8k726srnmq9e10e4allrkf4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.gotchasomething.knitfits",
+            "certificate_hash": "688790dbe0f891e041ee86cd710dd35c5f2970e5"
+          }
+        },
+        {
+          "client_id": "201793837441-sul8rlulqcj6lbjilnmqj93p843u0pso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlWq_2wBDCLNf7RX6mOmnMastHXNYguvM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201793837441-sul8rlulqcj6lbjilnmqj93p843u0pso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

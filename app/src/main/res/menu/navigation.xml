@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_new_project"
+        android:icon="@drawable/ic_add_circle_outline_blue_24dp"
+        android:title="@string/title_new_project"
+
+        />
+
+    <item
+        android:id="@+id/navigation_calculator"
+        android:icon="@drawable/ic_developer_mode_blue_24dp"
+        android:title="@string/title_calculator"
+
+        />
+
+    <item
+        android:id="@+id/navigation_my_projects"
+        android:icon="@drawable/ic_favorite_border_blue_24dp"
+        android:title="@string/title_my_projects"
+
+        />
+
+    <item
+    android:id="@+id/navigation_help"
+    android:icon="@drawable/ic_help_outline_blue_24dp"
+    android:title="@string/title_help"
+
+    />
+
+</menu>

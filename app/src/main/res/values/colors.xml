@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorGreen">#5a8b2a</color>
+
+    <color name="colorDarkPink">#ff4081</color>
+
+    <color name="colorLightPink">#ffbaa2</color>
+    <color name="colorLightBlue">#cae1ff</color>
+
+    <color name="activeDots">#fffafa</color>
+    <color name="inactiveDots">#83878b</color>
+
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorLightestPink">#feeae6</color>
+
+    <color name="colorDarkBrown">#442c2e</color>
+
+    <color name="colorTeal">#008081</color>
+    <color name="colorTeal2">#007872</color>
+    <color name="colorTeal4">#2b737a</color>
+    <color name="colorGreen3">#508030</color>
+
+
+    <color name="colorTeal5">#005959</color>
+    <color name="colorTeal3">#008080</color>
+    <color name="colorGreen2">#98b864</color>
+    <color name="colorOrange2">#f05f3b</color>
+    <color name="colorOrange">#f9a602</color>
+
+
+
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorTeal3</item>
+        <item name="colorPrimaryDark">@color/colorTeal5</item>
+        <item name="colorAccent">@color/colorOrange2</item>
+    </style>
+
+    <style name="PinkBrown" parent="Theme.AppCompat" >
+        <item name="colorPrimary">@color/colorLightestPink</item>
+        <item name="colorAccent">@color/colorDarkPink</item>
+        <item name="colorPrimaryDark">@color/colorDarkBrown</item>
+        <item name="android:colorBackground">@color/colorLightestPink</item>
+        <item name="android:colorForeground">@color/colorDarkBrown</item>
+    </style>
+</resources>

@@ -1,0 +1,183 @@
+<resources>
+    <string name="app_name">Knit Fits!</string>
+    <string name="my_projects_menu">My Projects</string>
+    <string name="project_name_label_hint">Enter a name for this project</string>
+    <string name="project_image_button_label_hint">Click here to add an image to this project, if desired</string>
+    <string name="pattern_gauge_info_hint">Enter the knitting gauge given in the pattern:</string>
+    <string name="stitches_equals_label">stitches =</string>
+    <string name="inches_label">inches</string>
+    <string name="and_label">AND</string>
+    <string name="rows_equals_label">rows =</string>
+    <string name="your_pattern_gauge_info_hint">Knit a sample in stockinette stitch that is 10 stitches wide x 10 rows long and measure it:</string>
+    <string name="choose_project_label">1. Which project are you working on?</string>
+    <string name="imposed_conditions_label">4.  Do any of these rules apply?</string>
+    <string name="even_label">Must be an even # of stitches</string>
+    <string name="odd_label">Must be an odd # of stitches</string>
+    <string name="multiple_of_label"># of stitches must be a multiple</string>
+    <string name="finished_size_label">3. The calculated result will be:</string>
+    <string name="same_label">the same size as the original pattern</string>
+    <string name="different_label">a different measurement</string>
+    <string name="adjust_stitches_label">Adjust # of stitches (width)</string>
+    <string name="adjust_rows_label">Adjust # of rows (length)</string>
+    <string name="requested_hint">Original # in pattern</string>
+    <string name="width_inches_times_label">inch. (width) X</string>
+    <string name="length_inches_label">inch. (length)</string>
+    <string name="your_pattern_gauge_data_hint">Your gauge:</string>
+    <string name="information_2">Use this app to calculate the # of stitches or rows you need to make, so that your project will fit!</string>
+    <string name="information_3">Use it for a full row or just the number of stitches in an increase or decrease&#8230;</string>
+    <string name="information_4">Create and save a new project: </string>
+    <string name="new_project_button_label">Add a new project</string>
+    <string name="custom_measurement_hint">Enter your measurement</string>
+    <string name="multiple_base_hint">Enter base # here</string>
+    <string name="multiple_plus_hint">For multiple plus, enter # to add here</string>
+    <string name="multiple_minus_hint">For multiple minus, enter # to subtract here</string>
+    <string name="calculator_purpose">4.  You need this calculator to:</string>
+    <string name="none_apply_label">None apply</string>
+    <string name="not_sure_button">Not sure?</string>
+    <string name="not_sure_s_or_r">Indicate S for stitches or R for rows</string>
+    <string name="go_button">Next</string>
+    <string name="title_new_project">New Project</string>
+    <string name="title_my_projects">My Projects</string>
+    <string name="title_calculator">Calculator</string>
+    <string name="title_help">Help</string>
+    <string name="not_sure_result">The pattern\'s original measurement is\u0020</string>
+    <string name="project_image">Project image</string>
+    <string name="choose_a_project">Choose a project</string>
+    <string name="save_project">Save</string>
+    <string name="my_projects_list">My projects list</string>
+    <string name="view_this_list_item">View this list item</string>
+    <string name="edit_this_list_item">Edit this list item</string>
+    <string name="delete_this_list_item">Delete this list item</string>
+    <string name="knit_fits_logo">Knit Fits logo</string>
+    <string name="calculate">RESET</string>
+    <string name="help2_step1_part1">STEP 2: Find the knitting gauge given to you in the pattern and enter the details.</string>
+    <string name="help2_step1_part2">Example 1: knitting across rows"</string>
+    <string name="help2_step1_part2b">If the pattern gauge is \"10 sts/15 rows = 4 inches\", then you enter:</string>
+    <string name="help2_step1_part3">Example 2: knitting in the round</string>
+    <string name="help2_step1_part3b">If the pattern gauge is \"22 rows of 22 stitches in the round = 2 inches\", then you enter:</string>
+    <string name="_22" translatable="false">22</string>
+    <string name="_2" translatable="false">2</string>
+    <string name="_10" translatable="false">10</string>
+    <string name="_4" translatable="false">4</string>
+    <string name="_15" translatable="false">15</string>
+    <string name="own_gauge">STEP 3: Capture your own knitting gauge by making a 10 stitch by 10 row stockinette sample and measuring it</string>
+    <string name="gauge_warning">Don\'t round the measurement up or down too much.</string>
+    <string name="example">Example: accurate measuring</string>
+    <string name="_2_5" translatable="false">2.5</string>
+    <string name="_3_25" translatable="false">3.25</string>
+    <string name="then_done">STEP 4: Click \'Save\' and your gauges are captured and stored for you to use over and over again until you\'re done knitting the project.</string>
+    <string name="use_calculator">Use the calculator:</string>
+    <string name="name_your_project">STEP 1: Name your project and choose a picture for it (picture is optional)</string>
+    <string name="easiest_way">Hint: The easiest way might be to take a screenshot of your pattern</string>
+    <string name="use_pull_down_menu">STEP 1: Use the pull-down menu to choose the project you\'re knitting</string>
+    <string name="decide">STEP 3: Decide if you want your project to be the same measurement as the original pattern or a custom measurement.</string>
+    <string name="use_not_sure_button">Hint: If you\'re not sure, use the \'Not Sure\' button and answer a couple of questions, and the app will tell you what the finished measurement of the original pattern will be so you can decide.</string>
+    <string name="not_sure_ex_1">Example 1: for casting on</string>
+    <string name="not_sure_ex_1b">The pattern is asking you to cast on 150 stitches for the neckline. Type \'150\' in the box and click \'next\'. The app will tell you what the neckline of the original pattern measures. You can now use a measuring tape to see if you want your neckline to be the same as that or another measurement.</string>
+    <string name="not_sure_ex_2">Example 4: for lengths</string>
+    <string name="not_sure_ex_2b">The pattern has a total of 76 rows. Type \'76\' in the box and click \'next\'. The app will tell you what the length of the original pattern is. You can now use a measuring tape to see if you want your project to be the same length or another measurement.</string>
+    <string name="special_conditions">STEP 4: Tell the app if any special conditions exist for your pattern.</string>
+    <string name="multiple_ex_1">Example 1: for a multiple plus pattern</string>
+    <string name="multiple_ex_1b">Your pattern specifies that the number of stitches cast on must be a multiple of 8 plus 2. You click the option and enter:</string>
+    <string name="multiple_ex_2">Example 2: for a multiple minus pattern</string>
+    <string name="multiple_ex_2b">Your pattern specifies that the number of stitches cast on must be a multiple of 9 minus 3. You click the option and enter:</string>
+    <string name="_8" translatable="false">8</string>
+    <string name="_9" translatable="false">9</string>
+    <string name="_3" translatable="false">3</string>
+    <string name="leave_multiple_empty">Hint: You can leave the plus and minus boxes empty, you don\'t need to enter a zero if they don\'t apply.</string>
+    <string name="choose_width_length">STEP 4: Choose whether you\'re calculating for stitches (width) or rows (length).</string>
+    <string name="width_length_hint">Hint: If you\'re using the calculator for an increase or a decrease, choose \'stitches (width)\'.</string>
+    <string name="click_calculate">STEP 5: Click on \'CALCULATE\'.</string>
+    <string name="once_decided">Once you\'ve chosen, enter either your custom measurement or the number of stitches or rows in the original pattern, as appropriate, in the box that appears.</string>
+    <string name="view_edit_delete">View, Edit, and Delete your projects at any time</string>
+    <string name="questions">Have questions, comments, suggestions?</string>
+    <string name="contact_us">Contact us, we\'d love to hear from you!</string>
+    <string name="slide1Title">Welcome to Knit Fits!</string>
+    <string name="slide1Description">Stop wasting time and money knitting projects that don\'t fit&#8230;use this app to recalculate the number of stitches or rows for you.</string>
+    <string name="slide2Title">Step 1: Create and save a new project</string>
+    <string name="slide2Description">The app will store the pattern\'s knitting gauge and your own knitting gauge to be used over and over until you\'re done the project.</string>
+    <string name="slide3Title">Step 2: Use the calculator</string>
+    <string name="slide3Description">Use it often: for cast on, for increases and decreases, for the length of your project&#8230;anytime you need to verify the fit.</string>
+    <string name="slide4Title">Step 3: Edit or delete projects at any time</string>
+    <string name="slide4Description">Create as many projects as you want, there\'s no limit!</string>
+    <string name="slide5Title">More detailed instructions available</string>
+    <string name="slide5Description">Check out the help section if you need more information.</string>
+    <string name="my_preference" translatable="false">ca.gotchasomething.ca.MyPref</string>
+    <string name="my_preference_key" translatable="false">ca.gotchasomething.ca.MyPrefKey</string>
+    <string name="skip">Skip intro</string>
+    <string name="next">Next</string>
+    <string name="hint_new_projects_will_appear_at_the_top_of_the_list">Hint: New projects will appear at the top of the list.</string>
+    <string name="view_project">To View a project\'s gauge details: Click on the pencil icon next to the project\'s name in \'My Projects\'</string>
+    <string name="edit_project">To Edit a project\'s gauge details: Click on the pencil icon next to the project\'s name in \'My Projects\', make the desired changes, and click \'Save\'</string>
+    <string name="delete_project">To Delete a project: Click on the trash can icon next to the project\'s name in \'My Projects\'</string>
+    <string name="not_sure_ex_1_button">Click here to see an example of using the not sure button for help with a cast on</string>
+    <string name="not_sure_ex_collapse">Click here to hide the example</string>
+    <string name="not_sure_ex_2_button">Click here to see an example of how to use the not sure button for help with the length of your project</string>
+    <string name="multiple_ex1_button">Click here to see an example of how to use the calculator if your pattern calls for a multiple of a number with a plus condition</string>
+    <string name="multiple_ex2_button">Click here to see an example of how to use the calculator if your pattern calls for a multiple of a number with a minus condition</string>
+    <string name="gauge_ex1_button">Click here to see an example of how to enter a knitting gauge for knitting across rows</string>
+    <string name="gauge_ex2_button">Click here to see an example of how to enter a knitting gauge for knitting in the round</string>
+    <string name="own_gauge_ex_button">Click here to see an example of accurate measuring of your own knitting gauge</string>
+    <string name="email_address" translatable="false">gotchasomething.ca@gmail.com</string>
+    <string name="cancel">Cancel</string>
+    <string name="not_sure_toast">You must enter either R for rows (length) or S for stitches (width)</string>
+    <string name="plus_minus_toast">You cannot have both a plus and a minus condition on a multiple</string>
+    <string name="same_toast">You must enter the number of stitches or rows requested by the pattern</string>
+    <string name="multiple_toast">You must enter a base number if you need the result to be a multiple</string>
+    <string name="custom_toast">You must enter a number of inches if you want to use a custom measurement</string>
+    <string name="result_toast">Make sure you have entered numbers in both your project and the calculator pages AND that you have selected to calculate either stitches (width) or rows (length)</string>
+    <string name="result_stitches">The number of stitches you should make is: </string>
+    <string name="result_rows">The number of rows you should make is: </string>
+    <string name="changes_saved">Your changes have been saved</string>
+    <string name="project_saved">This project has been saved</string>
+    <string name="onboarding_start_button">Start</string>
+    <string name="onboarding_next_button">Next</string>
+    <string name="stitches_rows_toast">You must choose to calculate either stitches (width) or rows (length)</string>
+    <string name="result_zero_dialog">No result possible</string>
+    <string name="same_diff_toast">You must choose whether to use the same measurement as the pattern or a custom measurement</string>
+    <string name="no_number_warning">You must enter a number</string>
+    <string name="cast_on_result">The original pattern measures</string>
+    <string name="inc_dec_hint"># of stitches in the increase or decrease</string>
+    <string name="need_length_result">The pattern\'s length measures</string>
+    <string name="need_length_hint">Enter # of rows in the pattern</string>
+    <string name="need_row_result">The pattern\'s row measures</string>
+    <string name="need_row_hint">Enter # of stitches in the pattern</string>
+    <string name="calculate2">CALCULATE</string>
+    <string name="app_purpose">2. Need this app to calculate:</string>
+    <string name="cast_on">the # of stitches to cast on</string>
+    <string name="inc_dec">the # of stitches in an increase or decrease</string>
+    <string name="particular_row">the # of stitches in a particular row of my project</string>
+    <string name="length">the length of part or all of my project</string>
+    <string name="website">www.gotchasomething.ca</string>
+    <string name="choose">STEP 2: Choose the calculation that you need the app to perform</string>
+    <string name="not_sure_ex_1c">Example 2: for an increase or decrease</string>
+    <string name="not_sure_ex_1d">The pattern is asking you to increase a row by 8 stitches. Enter 8 in the box and click \'calculate\'.</string>
+    <string name="not_sure_ex_1e">Example 3: for a particular row</string>
+    <string name="not_sure_ex_1f">The pattern is made to fit someone with a bust of 36 inches and has 120 stitches in the row that is at bust level. Your bust measures 37 inches. Type \'120\' in the box and click \'next\'. Choose \'a different measurement\' and type \'37\' in the box and click \'next\'.</string>
+    <string name="email_warning">There are no email clients installed</string>
+    <string name="rateTheApp">Please take a moment to rate this app</string>
+    <string name="contact">Contact Us</string>
+    <string name="my_preference_r">ca.gotchasomething.ca.MyRatingsPref</string>
+    <string name="my_preference_r_key">ca.gotchasomething.ca.MyPrefRKey</string>
+    <string name="ask_later">Okay. We\'ll ask you again later</string>
+    <string name="google_play_url">market://details?id=ca.gotchasomething.knitfits</string>
+    <string name="choose_email">Choose an Email client</string>
+    <string name="enjoying_question">Are you enjoying using this app?</string>
+    <string name="no">No</string>
+    <string name="not_sure_yet">not sure yet</string>
+    <string name="yes">Yes!</string>
+    <string name="rate_it_question">Will you please take a moment to rate it?</string>
+    <string name="not_now">Not now</string>
+    <string name="sure">sure!</string>
+    <string name="email_question">Will you please let us know what we need to change to make it better?</string>
+    <string name="no_zeros_allowed">You may not leave any of the values as zero</string>
+    <string name="centimetres">Centimetres</string>
+    <string name="inches">Inches</string>
+    <string name="cm_label">cm</string>
+    <string name="width_cm_times_label">cm (width) X</string>
+    <string name="length_cm_label">cm (length)</string>
+    <string name="no_data_warning">You must create a project</string>
+    <string name="change_button">change</string>
+    <string name="edit_button">edit</string>
+    <string name="edit_warning">You must click the NEXT or EDIT button after changing this number</string>
+</resources>
