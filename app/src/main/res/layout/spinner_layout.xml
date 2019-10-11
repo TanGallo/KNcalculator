@@ -22,7 +22,7 @@
         android:layout_toEndOf="@id/spinnerImage"
         android:layout_toStartOf="@id/downArrow"
         android:layout_centerHorizontal="true"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/colorTeal5"
         />
 

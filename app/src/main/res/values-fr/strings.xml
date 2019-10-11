@@ -168,4 +168,5 @@
     <string name="edit_button">nouveau</string>
     <string name="edit_warning">Vous devez cliquer PROCHAIN ou NOUVEAU après d\'avoir changer ce numèro</string>
     <string name="contact_us">Contactez nous, nous serons heureux de vous parler!</string>
+    <string name="image_too_large">The image you chose is too large.</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/new_project_container"
@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="70dp">
@@ -113,7 +113,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:background="@drawable/rectangle"
-                                android:inputType="number"
+                                android:inputType="numberDecimal"
                                 android:minWidth="50dp"
                                 android:textSize="18sp"
                                 tools:ignore="LabelFor" />
@@ -184,7 +184,7 @@
                         android:layout_below="@id/andLabel"
                         android:layout_marginStart="10dp"
                         android:background="@drawable/rectangle"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:minWidth="50dp"
                         android:textSize="18sp"
                         tools:ignore="LabelFor" />
@@ -292,7 +292,6 @@
                             android:id="@+id/gliText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
                             android:background="@drawable/rectangle"
                             android:inputType="numberDecimal"
                             android:minWidth="50dp"
@@ -351,11 +350,11 @@
 
             </RelativeLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -367,4 +366,4 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

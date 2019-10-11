@@ -13,9 +13,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,11 +26,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 
 import ca.gotchasomething.knitfits.data.ProjectsDb;
 import ca.gotchasomething.knitfits.data.ProjectsDbHelper;
@@ -41,6 +39,7 @@ import ca.gotchasomething.knitfits.data.ProjectsDbManager;
 
 public class NewProjectsLayout extends MainNavigation {
 
+    private static final int PICK_IMAGE = 100;
     private static int RESULT_LOAD_IMAGE = 1;
     private static final int REQUEST_CODE = 1;
     private ProjectsDbManager listManager;
@@ -59,15 +58,14 @@ public class NewProjectsLayout extends MainNavigation {
     TextView cmLabel, inchesLabel, cm2Label, inches2Label, cmTimesLabel, inchesTimesLabel, cm3Label, inches3Label;
     Bitmap selectedImage, bitmap;
     byte[] image = null, byteArray;
-    String name, pwsS, pws, pwiS, pwi, plrS, plr, pliS, pli, gwiS, gwi, gliS, gli;
+    String picturePath, name, pwsS, pws, pwiS, pwi, plrS, plr, pliS, pli, gwiS, gwi, gliS, gli;
     long id;
     Intent askForRating, i, i2, i4, i5;
-    int clicked2 = 0;
+    int clicked2 = 0, imageSize = 0;
     String clicked2S, unit;
-    SharedPreferences sp;
+    SharedPreferences sp, spE;
     int clickedE2 = 0;
     String clickedE2S;
-    SharedPreferences spE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,13 +147,15 @@ public class NewProjectsLayout extends MainNavigation {
                 e2.printStackTrace();
             }
 
-            if(imageStream == null) {
+            if (imageStream == null) {
                 selectedImage = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_camera_green);
-                insertProjectImageView.setImageBitmap(selectedImage);
+                insertProjectImageView.setImageBitmap(Bitmap.createScaledBitmap(selectedImage, 60, 120, false));
+                //insertProjectImageView.setImageBitmap(selectedImage);
             } else {
 
                 selectedImage = BitmapFactory.decodeStream(imageStream);
-                insertProjectImageView.setImageBitmap(selectedImage);
+                insertProjectImageView.setImageBitmap(Bitmap.createScaledBitmap(selectedImage, 60, 120, false));
+                //insertProjectImageView.setImageBitmap(selectedImage);
             }
         }
     }
@@ -174,7 +174,7 @@ public class NewProjectsLayout extends MainNavigation {
             cm3Label = findViewById(R.id.cm3Label);
             inches3Label = findViewById(R.id.inches3Label);
 
-            if(checkedId == R.id.cmRadioButton) {
+            if (checkedId == R.id.cmRadioButton) {
                 newProjectLayout.setVisibility(View.VISIBLE);
                 cmLabel.setVisibility(View.VISIBLE);
                 inchesLabel.setVisibility(View.GONE);
@@ -213,81 +213,88 @@ public class NewProjectsLayout extends MainNavigation {
             gwiText = findViewById(R.id.gwiText);
             gliText = findViewById(R.id.gliText);
 
-            name = projectNameText.getText().toString();
-            image = imageViewToByte(insertProjectImageView);
-
-            if (unit == "cm") {
-                unit = "cm";
-            } else if (unit == "inch") {
-                unit = "inch";
-            }
-
-            pwsS = pwsText.getText().toString();
-            if (!pwsS.equals("") ) {
-                pws = String.valueOf(pwsS);
-            } else {
-                pws = String.valueOf(0.0);
-            }
-
-            pwiS = pwiText.getText().toString();
-            if (!pwiS.equals("") ) {
-                pwi = String.valueOf(pwiS);
-            } else {
-                pwi = String.valueOf(0.0);
-            }
-
-            plrS = plrText.getText().toString();
-            if (!plrS.equals("") ) {
-                plr = String.valueOf(plrS);
-            } else {
-                plr = String.valueOf(0.0);
-            }
-
-            pliS = pliText.getText().toString();
-            if (!pliS.equals("") ) {
-                pli = String.valueOf(pliS);
-            } else {
-                pli = String.valueOf(0.0);
-            }
-
-            gwiS = gwiText.getText().toString();
-            if (!gwiS.equals("") ) {
-                gwi = String.valueOf(gwiS);
-            } else {
-                gwi = String.valueOf(0.0);
-            }
-
-            gliS = gliText.getText().toString();
-            if (!gliS.equals("") ) {
-                gli = String.valueOf(gliS);
-            } else {
-                gli = String.valueOf(0.0);
-            }
-
-            project = new ProjectsDb(
-                    name,
-                    image,
-                    unit,
-                    pws,
-                    pwi,
-                    plr,
-                    pli,
-                    gwi,
-                    gli,
-                    0);
-
-            if(Double.valueOf(pws) == 0.0 || Double.valueOf(pwi) == 0.0 || Double.valueOf(plr) == 0.0 ||
-                    Double.valueOf(pli) == 0.0 || Double.valueOf(gwi) == 0.0 || Double.valueOf(gli) == 0.0) {
-                Toast.makeText(getBaseContext(), R.string.no_zeros_allowed,
-                        Toast.LENGTH_LONG).show();
-
+            if (imageViewToByte(insertProjectImageView) == null) {
+                Toast.makeText(getBaseContext(), R.string.image_too_large, Toast.LENGTH_LONG).show();
+                //image = null;
             } else {
 
-                listManager.addProject(project);
-                Toast.makeText(getBaseContext(), R.string.project_saved,
-                        Toast.LENGTH_LONG).show();
+                name = projectNameText.getText().toString();
 
-                noRatingsYet();
+                image = imageViewToByte(insertProjectImageView);
+
+                if (unit == "cm") {
+                    unit = "cm";
+                } else if (unit == "inch") {
+                    unit = "inch";
+                }
+
+                pwsS = pwsText.getText().toString();
+                if (!pwsS.equals("")) {
+                    pws = String.valueOf(pwsS);
+                } else {
+                    pws = String.valueOf(0.0);
+                }
+
+                pwiS = pwiText.getText().toString();
+                if (!pwiS.equals("")) {
+                    pwi = String.valueOf(pwiS);
+                } else {
+                    pwi = String.valueOf(0.0);
+                }
+
+                plrS = plrText.getText().toString();
+                if (!plrS.equals("")) {
+                    plr = String.valueOf(plrS);
+                } else {
+                    plr = String.valueOf(0.0);
+                }
+
+                pliS = pliText.getText().toString();
+                if (!pliS.equals("")) {
+                    pli = String.valueOf(pliS);
+                } else {
+                    pli = String.valueOf(0.0);
+                }
+
+                gwiS = gwiText.getText().toString();
+                if (!gwiS.equals("")) {
+                    gwi = String.valueOf(gwiS);
+                } else {
+                    gwi = String.valueOf(0.0);
+                }
+
+                gliS = gliText.getText().toString();
+                if (!gliS.equals("")) {
+                    gli = String.valueOf(gliS);
+                } else {
+                    gli = String.valueOf(0.0);
+                }
+
+                project = new ProjectsDb(
+                        name,
+                        image,
+                        unit,
+                        pws,
+                        pwi,
+                        plr,
+                        pli,
+                        gwi,
+                        gli,
+                        0);
+
+                if (Double.valueOf(pws) == 0.0 || Double.valueOf(pwi) == 0.0 || Double.valueOf(plr) == 0.0 ||
+                        Double.valueOf(pli) == 0.0 || Double.valueOf(gwi) == 0.0 || Double.valueOf(gli) == 0.0) {
+                    Toast.makeText(getBaseContext(), R.string.no_zeros_allowed,
+                            Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    listManager.addProject(project);
+                    Toast.makeText(getBaseContext(), R.string.project_saved,
+                            Toast.LENGTH_LONG).show();
+
+                    noRatingsYet();
+                }
             }
 
         }
@@ -297,6 +304,10 @@ public class NewProjectsLayout extends MainNavigation {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byteArray = stream.toByteArray();
+            imageSize = byteArray.length;
+            if (imageSize > 9000000) {
+                byteArray = null;
+            }
             return byteArray;
         }
 

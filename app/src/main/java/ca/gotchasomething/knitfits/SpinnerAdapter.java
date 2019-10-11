@@ -37,8 +37,9 @@ public class SpinnerAdapter extends CursorAdapter {
         spinnerImage = view.findViewById(R.id.spinnerImage);
         name = cursor.getString(cursor.getColumnIndexOrThrow(ProjectsDbHelper.NAME));
         image = cursor.getBlob(cursor.getColumnIndexOrThrow(ProjectsDbHelper.IMAGE));
-        bmp = BitmapFactory.decodeByteArray(image, 0, image.length);
-        spinnerImage.setImageBitmap(Bitmap.createScaledBitmap(bmp, 100, 100, false));
+        bmp = BitmapFactory.decodeByteArray(image, 0, image.length); //retrieves image from byte[]
+        //spinnerImage.setImageBitmap(bmp);
+        spinnerImage.setImageBitmap(Bitmap.createScaledBitmap(bmp, 80, 120, false));
         spinnerText.setText(name);
     }
 }

@@ -1,19 +1,22 @@
 package ca.gotchasomething.knitfits;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.tabs.TabLayout;
 
 public class HelpLayout extends MainNavigation {
 
     TabLayout tl;
     LinearLayout container;
     FragmentManager fm;
-    android.support.v4.app.FragmentTransaction transaction;
+    FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,5 @@
 package ca.gotchasomething.knitfits;
-//ADD CM/INCHES TO DB AND POPULATE/EDIT RADIO BUTTONS ACCORDINGLY
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,9 +26,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class MyProjectsLayout extends MainNavigation {
     ProjectsDb project;
     private ProjectsDbManager listManager;
     private ProjectsDbAdapter adapter;
+    private static final int PICK_IMAGE = 100;
     private static int RESULT_LOAD_IMAGE = 1;
     private static final int REQUEST_CODE = 1;
     EditText projectNameText, pwsText, pwiText, plrText, pliText, gwiText, gliText;
@@ -50,12 +52,13 @@ public class MyProjectsLayout extends MainNavigation {
     RadioButton cmRadioButton, inchRadioButton;
     RadioGroup cmInchRadioGroup;
     ImageView insertProjectImageView;
-    Bitmap selectedImage;
+    int imageSize = 0;
+    Bitmap origImage, bmp, selectedImage, bm;
     String name, unit, pwsS, pwiS, plrS, pliS, gwiS, gliS;
     byte[] image;
     long id;
     Intent intent5, intent6, i;
-    Uri imageUri;
+    Uri imageUri, imageUri1;
     InputStream imageStream;
     TextView cmLabel, inchesLabel, cm2Label, inches2Label, cm3Label, inches3Label, cmTimesLabel, inchesTimesLabel;
 
@@ -125,12 +128,18 @@ public class MyProjectsLayout extends MainNavigation {
                 holder = (ProjectViewHolder) convertView.getTag();
             }
 
-            final Bitmap bmp = BitmapFactory.decodeByteArray(
-                    projects.get(position).getImage(), 0, projects.get(position).getImage().length);
+            try {
+                bmp = BitmapFactory.decodeByteArray(
+                        projects.get(position).getImage(), 0, projects.get(position).getImage().length); //retrieves image from byte[] using tag position
+                holder.projectImage.setImageBitmap(bmp);
+            } catch (NullPointerException e) {
+                origImage = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_camera_green);
+                holder.projectImage.setImageBitmap(Bitmap.createScaledBitmap(origImage, 80, 120, false));
+                //holder.projectImage.setImageBitmap(origImage);
+            }
 
             holder.projectName.setText(projects.get(position).getName());
-            holder.projectImage.setImageBitmap(
-                    Bitmap.createScaledBitmap(bmp, 100, 100, false));
+            //holder.projectImage.setImageBitmap(Bitmap.createScaledBitmap(bmp, 100, 100, false));
 
             holder.projectDeleted.setTag(projects.get(position));
             holder.projectEdit.setTag(projects.get(position));
@@ -176,7 +185,10 @@ public class MyProjectsLayout extends MainNavigation {
                     project = (ProjectsDb) holder.projectEdit.getTag();
 
                     projectNameText.setText(project.getName());
-                    insertProjectImageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, 100, 100, false));
+                    bmp = BitmapFactory.decodeByteArray(
+                            projects.get(position).getImage(), 0, projects.get(position).getImage().length); //retrieves image from byte[] using tag position
+                    //insertProjectImageView.setImageBitmap(bmp);
+                    insertProjectImageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, 80, 120, false));
 
                     if (project.getUnit().equals("cm")) {
                         cmRadioButton.setChecked(true);
@@ -246,24 +258,29 @@ public class MyProjectsLayout extends MainNavigation {
                         @Override
                         public void onClick(View v) {
 
-                            project.setName(projectNameText.getText().toString());
-                            project.setImage(imageViewToByte(insertProjectImageView));
-                            project.setUnit(unit);
-                            project.setPws(pwsText.getText().toString());
-                            project.setPwi(pwiText.getText().toString());
-                            project.setPlr(plrText.getText().toString());
-                            project.setPli(pliText.getText().toString());
-                            project.setGwi(gwiText.getText().toString());
-                            project.setGli(gliText.getText().toString());
+                            if (imageViewToByte(insertProjectImageView) == null) {
+                                Toast.makeText(getBaseContext(), R.string.image_too_large, Toast.LENGTH_LONG).show();
+                            } else {
 
-                            listManager.updateProject(project);
-                            adapter.updateProjects(listManager.getProjects());
-                            notifyDataSetChanged();
-                            Toast.makeText(getBaseContext(), R.string.changes_saved,
-                                    Toast.LENGTH_LONG).show();
-                            intent5 = new Intent(MyProjectsLayout.this, MyProjectsLayout.class);
-                            intent5.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                            startActivity(intent5);
+                                project.setName(projectNameText.getText().toString());
+                                project.setImage(imageViewToByte(insertProjectImageView));
+                                project.setUnit(unit);
+                                project.setPws(pwsText.getText().toString());
+                                project.setPwi(pwiText.getText().toString());
+                                project.setPlr(plrText.getText().toString());
+                                project.setPli(pliText.getText().toString());
+                                project.setGwi(gwiText.getText().toString());
+                                project.setGli(gliText.getText().toString());
+
+                                listManager.updateProject(project);
+                                adapter.updateProjects(listManager.getProjects());
+                                notifyDataSetChanged();
+                                Toast.makeText(getBaseContext(), R.string.changes_saved,
+                                        Toast.LENGTH_LONG).show();
+                                intent5 = new Intent(MyProjectsLayout.this, MyProjectsLayout.class);
+                                intent5.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                                startActivity(intent5);
+                            }
                         }
 
                         public byte[] imageViewToByte(ImageView image) {
@@ -271,6 +288,10 @@ public class MyProjectsLayout extends MainNavigation {
                             ByteArrayOutputStream stream = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                             byte[] byteArray = stream.toByteArray();
+                            imageSize = byteArray.length;
+                            if (imageSize > 9000000) {
+                                byteArray = null;
+                            }
                             return byteArray;
                         }
                     });
@@ -349,13 +370,16 @@ public class MyProjectsLayout extends MainNavigation {
                 e2.printStackTrace();
             }
 
-            if(imageStream == null) {
+            if (imageStream == null) {
                 selectedImage = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_camera_green);
-                insertProjectImageView.setImageBitmap(selectedImage);
+
+                //insertProjectImageView.setImageBitmap(selectedImage);
+                insertProjectImageView.setImageBitmap(Bitmap.createScaledBitmap(selectedImage, 60, 120, false));
             } else {
 
                 selectedImage = BitmapFactory.decodeStream(imageStream);
-                insertProjectImageView.setImageBitmap(selectedImage);
+                //insertProjectImageView.setImageBitmap(selectedImage);
+                insertProjectImageView.setImageBitmap(Bitmap.createScaledBitmap(selectedImage, 60, 120, false));
             }
         }
     }

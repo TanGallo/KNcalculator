@@ -13,7 +13,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -26,42 +25,45 @@ import ca.gotchasomething.knitfits.data.ProjectsDbHelper;
 
 public class CalculatorLayout extends MainNavigation {
 
-    SpinnerAdapter sAdapter;
-    Cursor cursor;
-    Spinner spinner;
-    ProjectsDbHelper projectsDbHelper;
-    SQLiteDatabase db;
-    RadioGroup calcPurposeRadioGroup, sameDiff, conditions;
-    RadioButton castOnRadioButton, increaseDecreaseRadioButton, lengthRadioButton, widthRadioButton, sameRadioButton,
-            diffRadioButton, evenRadioButton, oddRadioButton, multRadioButton, noneApplyRadioButton;
-    LinearLayout sameDiffLayout, conditionsLayout;
-    EditText origNumberText, origNumberLText, customSizeText, numberLabel, plusLabel, minusLabel;
+    boolean same = false, diff = false, visible = false;
     Button nextOrigNumbersButton, nextCustomNumbersButton, changeCustomNumbersButton, nextOrigNumbersLButton,
             changeSameDiffButton, calcButton, calc2Button, calc3Button, calcResButton;
+    Cursor cursor;
+    Double customSize = 0.0, gli = 0.0, gwi = 0.0, minus = 0.0, multiple = 0.0, pli = 0.0, plr = 0.0, plus = 0.0, pwi = 0.0, pws = 0.0;
+    EditText origNumberText, origNumberLText, customSizeText, numberLabel, plusLabel, minusLabel;
+    General gen;
+    int sameWidth = 0, sameLength = 0, diffWidth = 0, diffLength = 0;
+    Intent reset, backToCalculator;
+    ProjectsDbHelper projectsDbHelper;
+    RadioButton castOnRadioButton, increaseDecreaseRadioButton, lengthRadioButton, widthRadioButton, sameRadioButton,
+            diffRadioButton, evenRadioButton, oddRadioButton, multRadioButton, noneApplyRadioButton;
+    RadioGroup calcPurposeRadioGroup, sameDiff, conditions;
+    SpinnerAdapter sAdapter;
+    Spinner spinner;
+    SQLiteDatabase db;
+    String spinnerString = null;
     TextView origNumberResultText, origNumberLResultText, origIncDecText, finishedSizeLabel, conditionsLabel,
             newNumberLabel, newNumberResult;
-    boolean same = false, diff = false, visible = false;
-    Intent reset, backToCalculator;
 
     //data captured in spinner selection for use in calculations
-    double pws = 0.0, pwi = 0.0, plr = 0.0, pli = 0.0, gwi = 0.0, gli = 0.0;
+    //double pws = 0.0, pwi = 0.0, plr = 0.0, pli = 0.0, gwi = 0.0, gli = 0.0;
 
     //data captured in layout for use in calculations
     double origNumberW = 0.0, origNumberL = 0.0;
-    double customSize = 0.0;
-    static double multiple = 0.0;
-    static double plus = 0.0;
-    static double minus = 0.0;
+    //double customSize = 0.0;
+    //static double multiple = 0.0;
+    //static double plus = 0.0;
+    //static double minus = 0.0;
     String origNumberSW = null, origNumberSL = null, origIncDecS = null, sameSize = null, evenOdd = null, widthLength = null, mustBeMultiple = null,
             customSizeS = null, multipleS = null, plusS = null, minusS = null, unit;
 
     //calculated values for use in calculations
     DecimalFormat origNumberDec;
-    double pwM = 0.0, plM = 0.0, gwStperI = 0.0, glRperI = 0.0;
-    static int sameWidth = 0;
-    static int sameLength = 0;
-    static int diffWidth = 0;
-    static int diffLength = 0;
+    Double pwM = 0.0, plM = 0.0, gwStperI = 0.0, glRperI = 0.0;
+    //static int sameWidth = 0;
+    //static int sameLength = 0;
+    //static int diffWidth = 0;
+    //static int diffLength = 0;
     String type = null;
     int result = 0, resultIncDec = 0;
 
@@ -77,6 +79,8 @@ public class CalculatorLayout extends MainNavigation {
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        gen = new General();
 
         origNumberText = findViewById(R.id.origNumberText);
         origNumberText.setVisibility(View.GONE);
@@ -163,7 +167,14 @@ public class CalculatorLayout extends MainNavigation {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 //retrieve project data from spinner selection
-                String pwsS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PWS));
+                pws = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PWS)));
+                pwi = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PWI)));
+                plr = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PLR)));
+                pli = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PLI)));
+                gwi = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.GWI)));
+                gli = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.GLI)));
+
+                /*String pwsS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PWS));
                 if (pwsS != null && !pwsS.equals("")) {
                     pws = Double.valueOf(pwsS);
                 } else {
@@ -203,7 +214,7 @@ public class CalculatorLayout extends MainNavigation {
                     gli = Double.valueOf(gliS);
                 } else {
                     gli = 0.0;
-                }
+                }*/
 
                 String unitS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.UNIT));
                 if (unitS != null && !unitS.equals("")) {
@@ -363,11 +374,21 @@ public class CalculatorLayout extends MainNavigation {
         });
     }
 
+    /*public Double spinnerSel(String str1) {
+        String string = str1;
+        if (string != null && !string.equals("")) {
+            spinnerSel = Double.valueOf(string);
+        } else {
+            spinnerSel = 0.0;
+        }
+        return spinnerSel;
+    }*/
+
     public String unitUnit() {
         return unit;
     }
 
-    public void pwM() {
+    /*public void pwM() {
         origNumberSW = origNumberText.getText().toString();
         if (!origNumberSW.equals("")) {
             origNumberW = Double.valueOf(origNumberSW);
@@ -383,9 +404,9 @@ public class CalculatorLayout extends MainNavigation {
 
         pwM = (origNumberW / (pws / pwi));
 
-    }
+    }*/
 
-    public void plM() {
+    /*public void plM() {
         origNumberSL = origNumberLText.getText().toString();
         if (!origNumberSL.equals("")) {
             origNumberL = Double.valueOf(origNumberSL);
@@ -401,12 +422,16 @@ public class CalculatorLayout extends MainNavigation {
 
         plM = (origNumberL / (plr / pli));
 
-    }
+    }*/
 
 
     public int calculateResult() {
 
-        multipleS = numberLabel.getText().toString();
+        multiple = gen.dblFromSource(numberLabel.getText().toString());
+        plus = gen.dblFromSource(plusLabel.getText().toString());
+        minus = gen.dblFromSource(minusLabel.getText().toString());
+
+        /*multipleS = numberLabel.getText().toString();
         if (!multipleS.equals("")) {
             multiple = Double.valueOf(multipleS);
         } else {
@@ -425,13 +450,36 @@ public class CalculatorLayout extends MainNavigation {
             minus = Double.valueOf(minusS);
         } else {
             minus = 0.0;
-        }
+        }*/
 
         gwStperI = 10 / gwi;
         glRperI = 10 / gli;
 
-        sameWidth = (int) Math.round(pwM * gwStperI);
-        sameLength = (int) Math.round(plM * glRperI);
+        //sameWidth = (int) Math.round(pwM * gwStperI);
+        //sameLength = (int) Math.round(plM * glRperI);
+
+        sameWidth = (int) Math.round((gen.detMeasurement(
+                pws,
+                pwi,
+                origNumberText,
+                origNumberResultText,
+                finishedSizeLabel,
+                sameRadioButton,
+                diffRadioButton,
+                changeSameDiffButton,
+                nextOrigNumbersButton)) * gwStperI);
+
+        sameLength = (int) Math.round((gen.detMeasurement(
+                plr,
+                pli,
+                origNumberLText,
+                origNumberLResultText,
+                finishedSizeLabel,
+                sameRadioButton,
+                diffRadioButton,
+                changeSameDiffButton,
+                nextOrigNumbersLButton)) * glRperI);
+
         diffWidth = (int) Math.round(customSize * gwStperI);
         diffLength = (int) Math.round(customSize * glRperI);
 
@@ -815,12 +863,14 @@ public class CalculatorLayout extends MainNavigation {
 
         blankConditions();
 
-        customSizeS = customSizeText.getText().toString();
+        customSize = gen.dblFromSource(customSizeText.getText().toString());
+
+        /*customSizeS = customSizeText.getText().toString();
         if (!customSizeS.equals("")) {
             customSize = Double.valueOf(customSizeS);
         } else {
             customSize = 0.0;
-        }
+        }*/
 
         if (customSize == 0.0) {
             Toast.makeText(getBaseContext(), R.string.no_number_warning,
