@@ -1,4 +1,4 @@
-package ca.gotchasomething.knitfits;
+/*package ca.gotchasomething.knitfits;
 
 public class CalculateMultiple extends CalculatorLayout {
 
@@ -410,4 +410,4 @@ public class CalculateMultiple extends CalculatorLayout {
         }
         return diffLengthnoneClosest;
     }
-}
+}*/

@@ -69,53 +69,53 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/calculatorPurpose"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/app_purpose"
-                    android:textSize="18sp" />
-
-                <RadioGroup
-                    android:id="@+id/calcPurposeRadioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/castOnRadioButton"
+                    <TextView
+                        android:id="@+id/calcPurposeLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/cast_on"
+                        android:layout_margin="10dp"
+                        android:text="@string/app_purpose"
                         android:textSize="18sp" />
 
-                    <RadioButton
-                        android:id="@+id/increaseDecreaseRadioButton"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/calcPurposeRG"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/inc_dec"
-                        android:textSize="18sp" />
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/widthRadioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/particular_row"
-                        android:textSize="18sp" />
+                        <RadioButton
+                            android:id="@+id/castOnRB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/cast_on"
+                            android:textSize="18sp" />
 
-                    <RadioButton
-                        android:id="@+id/lengthRadioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/length"
-                        android:textSize="18sp" />
+                        <RadioButton
+                            android:id="@+id/incDecRB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/inc_dec"
+                            android:textSize="18sp" />
 
-                </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/widthRB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/particular_row"
+                            android:textSize="18sp" />
+
+                        <RadioButton
+                            android:id="@+id/lengthRB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/length"
+                            android:textSize="18sp" />
+
+                    </RadioGroup>
 
                 </LinearLayout>
 
@@ -125,27 +125,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/origNumberText"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/rectangle"
-                        android:hint="@string/requested_hint"
-                        android:inputType="number"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/origNumberLText"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/rectangle"
-                        android:hint="@string/requested_hint"
-                        android:inputType="number"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/origIncDecText"
+                        android:id="@+id/origNumberET"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -155,18 +135,7 @@
                         android:textSize="18sp" />
 
                     <Button
-                        android:id="@+id/nextOrigNumbersButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/teal_rectangle"
-                        android:text="@string/go_button"
-                        android:textSize="10sp"
-                        tools:ignore="SmallSp" />
-
-                    <Button
-                        android:id="@+id/nextOrigNumbersLButton"
+                        android:id="@+id/origNumberNextBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -177,20 +146,10 @@
                         tools:ignore="SmallSp" />
 
                     <TextView
-                        android:id="@+id/origNumberResultText"
+                        android:id="@+id/origNumberResTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/origNumberText"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/rectangle"
-                        android:textColor="@color/colorOrange2"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/origNumberLResultText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/origNumberLText"
+                        android:layout_below="@id/origNumberET"
                         android:layout_margin="10dp"
                         android:background="@drawable/rectangle"
                         android:textColor="@color/colorOrange2"
@@ -205,7 +164,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/finishedSizeLabel"
+                        android:id="@+id/finSizeLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -213,21 +172,21 @@
                         android:textSize="18sp" />
 
                     <RadioGroup
-                        android:id="@+id/sameDiff"
+                        android:id="@+id/sameDiffRG"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="vertical">
 
                         <RadioButton
-                            android:id="@+id/sameRadioButton"
+                            android:id="@+id/sameRB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/same_label"
                             android:textSize="18sp" />
 
                         <RadioButton
-                            android:id="@+id/diffRadioButton"
+                            android:id="@+id/diffRB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -236,24 +195,13 @@
 
                     </RadioGroup>
 
-                    <Button
-                        android:id="@+id/changeSameDiffButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/teal_rectangle"
-                        android:text="@string/change_button"
-                        android:textSize="10sp"
-                        tools:ignore="SmallSp" />
-
                     <RelativeLayout
                         android:id="@+id/customNumbersLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <EditText
-                            android:id="@+id/customSizeText"
+                            android:id="@+id/custSizeET"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -263,26 +211,15 @@
                             android:textSize="18sp" />
 
                         <Button
-                        android:id="@+id/nextCustomNumbersButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/teal_rectangle"
-                        android:text="@string/go_button"
-                        android:textSize="10sp"
-                        tools:ignore="SmallSp" />
-
-                        <Button
-                        android:id="@+id/changeCustomNumbersButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/teal_rectangle"
-                        android:text="@string/edit_button"
-                        android:textSize="10sp"
-                        tools:ignore="SmallSp" />
+                            android:id="@+id/custNumberNextBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/teal_rectangle"
+                            android:text="@string/go_button"
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp" />
 
                     </RelativeLayout>
 
@@ -305,21 +242,21 @@
                         android:textSize="18sp" />
 
                     <RadioGroup
-                        android:id="@+id/conditions"
+                        android:id="@+id/condRG"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="vertical">
 
                         <RadioButton
-                            android:id="@+id/evenRadioButton"
+                            android:id="@+id/evenRB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/even_label"
                             android:textSize="18sp" />
 
                         <RadioButton
-                            android:id="@+id/oddRadioButton"
+                            android:id="@+id/oddRB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -327,7 +264,7 @@
                             android:textSize="18sp" />
 
                         <RadioButton
-                            android:id="@+id/multRadioButton"
+                            android:id="@+id/multRB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -335,7 +272,7 @@
                             android:textSize="18sp" />
 
                         <RadioButton
-                            android:id="@+id/noneApplyRadioButton"
+                            android:id="@+id/noneRB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -346,7 +283,7 @@
 
 
                     <EditText
-                        android:id="@+id/numberLabel"
+                        android:id="@+id/baseET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -356,7 +293,7 @@
                         android:textSize="18sp" />
 
                     <EditText
-                        android:id="@+id/plusLabel"
+                        android:id="@+id/plusET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -368,7 +305,7 @@
                         android:textSize="18sp" />
 
                     <EditText
-                        android:id="@+id/minusLabel"
+                        android:id="@+id/minusET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -396,7 +333,7 @@
                         android:textSize="25sp" />
 
                     <TextView
-                        android:id="@+id/newNumberResult"
+                        android:id="@+id/newNumberResTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -411,7 +348,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/calcButton"
+                    android:id="@+id/calcBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -426,37 +363,7 @@
                     tools:ignore="UnusedAttribute" />
 
                 <Button
-                    android:id="@+id/calc2Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/rectangle"
-                    android:backgroundTint="@color/colorTeal3"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="@string/calculate2"
-                    android:textColor="@color/colorGreen2"
-                    android:textSize="20sp"
-                    tools:ignore="UnusedAttribute" />
-
-                <Button
-                    android:id="@+id/calc3Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/rectangle"
-                    android:backgroundTint="@color/colorTeal3"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="@string/calculate2"
-                    android:textColor="@color/colorGreen2"
-                    android:textSize="20sp"
-                    tools:ignore="UnusedAttribute" />
-
-                <Button
-                    android:id="@+id/calcResButton"
+                    android:id="@+id/calcResBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"

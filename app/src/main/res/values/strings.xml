@@ -181,4 +181,5 @@
     <string name="edit_button">edit</string>
     <string name="edit_warning">You must click the NEXT or EDIT button after changing this number</string>
     <string name="image_too_large">The image you chose is too large.</string>
+    <string name="must_create_project">You must create a project</string>
 </resources>
