@@ -44,7 +44,6 @@ public class MyProjectsLayout extends MainNavigation {
     ProjectsDb project;
     private ProjectsDbManager listManager;
     private ProjectsDbAdapter adapter;
-    private static final int PICK_IMAGE = 100;
     private static int RESULT_LOAD_IMAGE = 1;
     private static final int REQUEST_CODE = 1;
     EditText projectNameText, pwsText, pwiText, plrText, pliText, gwiText, gliText;
@@ -53,12 +52,11 @@ public class MyProjectsLayout extends MainNavigation {
     RadioGroup cmInchRadioGroup;
     ImageView insertProjectImageView;
     int imageSize = 0;
-    Bitmap origImage, bmp, selectedImage, bm;
-    String name, unit, pwsS, pwiS, plrS, pliS, gwiS, gliS;
-    byte[] image;
+    Bitmap origImage, bmp, selectedImage;
+    String unit;
     long id;
     Intent intent5, intent6, i;
-    Uri imageUri, imageUri1;
+    Uri imageUri;
     InputStream imageStream;
     TextView cmLabel, inchesLabel, cm2Label, inches2Label, cm3Label, inches3Label, cmTimesLabel, inchesTimesLabel;
 

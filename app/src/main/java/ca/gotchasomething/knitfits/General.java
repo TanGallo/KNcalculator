@@ -1,11 +1,6 @@
 package ca.gotchasomething.knitfits;
 
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +8,7 @@ public class General extends AppCompatActivity {
 
     public Double d = 0.0, dblFromSource = 0.0, measurement = 0.0;
     public int result1 = 0, result2 = 0, result3 = 0, result4 = 0, ultimateResult = 0;
-    public String string = null, unit = null;
+    public String string = null, word = null;
 
     public int getResult1(int int1, double dbl1, double dbl2) {
         //for
@@ -200,7 +195,6 @@ public class General extends AppCompatActivity {
     }
 
     public Double dblFromSource(String str1) {
-        //String string = str1;
         if (str1 != null && !str1.equals("")) {
             dblFromSource = Double.valueOf(str1);
         } else {
@@ -210,42 +204,27 @@ public class General extends AppCompatActivity {
     }
 
     public String stringFromSource(String str2) {
-        //String string2 = str2;
         if (str2 != null && !str2.equals("")) {
-            unit = str2;
+            word = str2;
         } else {
-            unit = null;
+            word = null;
         }
-        return unit;
+        return word;
     }
 
-    public Double detMeasurement(Double dbl1, Double dbl2, EditText et1, TextView tv1, TextView tv2, RadioButton rb1, RadioButton rb2, Button btn1) {
+    public Double detMeasurement(Double dbl1, Double dbl2, EditText et1) {
         //dbl1 = pws or plr
         //dbl2 = pwi or pli
         //et1 = origNumberET
-        //tv1 = origNumberResTV
-        //tv2 = finSizeLabel
-        //rb1 = sameRB
-        //rb2 = diffRB
-        //btn1 = origNumberNextBtn
         string = et1.getText().toString();
         if (!string.equals("")) {
             d = Double.valueOf(string);
-
         } else {
             d = 0.0;
-            Toast.makeText(getBaseContext(), R.string.no_number_warning,
-                    Toast.LENGTH_LONG).show();
-            tv1.setVisibility(View.GONE);
-            tv2.setVisibility(View.GONE);
-            rb1.setVisibility(View.GONE);
-            rb2.setVisibility(View.GONE);
-            btn1.setVisibility(View.VISIBLE);
         }
 
         measurement = (d / (dbl1 / dbl2));
 
         return measurement;
-
     }
 }

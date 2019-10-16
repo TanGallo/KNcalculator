@@ -25,46 +25,24 @@ import ca.gotchasomething.knitfits.data.ProjectsDbHelper;
 
 public class CalculatorLayout extends MainNavigation {
 
-    boolean same = false, diff = false, visible = false;
-    Button origNumberNextBtn, custNumberNextBtn, changeCustNumberBtn, calcBtn, calcResBtn;
+    boolean visible = false;
+    Button origNumberNextBtn, custNumberNextBtn, calcBtn, calcResBtn;
     Cursor cursor;
     DecimalFormat origNumberDec;
-    Double customSize = 0.0, gli = 0.0, glRperI = 0.0, gwi = 0.0, gwStperI = 0.0, minus = 0.0, multiple = 0.0, origNumberL = 0.0, origNumber = 0.0,
-            pli = 0.0, plM = 0.0, plr = 0.0,
-            plus = 0.0, pwi = 0.0, pwM = 0.0, pws = 0.0;
-    EditText origNumberET, origNumberLText, custSizeET, baseET, plusET, minusET;
+    Double customSize = 0.0, gli = 0.0, glRperI = 0.0, gwi = 0.0, gwStperI = 0.0, minus = 0.0, multiple = 0.0, origNumber = 0.0, pli = 0.0, plM = 0.0,
+            plr = 0.0, plus = 0.0, pwi = 0.0, pwM = 0.0, pws = 0.0;
+    EditText origNumberET, custSizeET, baseET, plusET, minusET;
     General gen;
     int result = 0, resultIncDec = 0, sameWidth = 0, sameLength = 0, diffWidth = 0, diffLength = 0;
-    Intent reset, backToCalculator;
+    Intent backToCalculator;
     ProjectsDbHelper projectsDbHelper;
     RadioButton castOnRB, incDecRB, lengthRB, widthRB, sameRB, diffRB, evenRB, oddRB, multRB, noneRB;
     RadioGroup calcPurposeRG, sameDiffRG, condRG;
     SpinnerAdapter sAdapter;
     Spinner spinner;
     SQLiteDatabase db;
-    String origNumberSW = null, origNumberSL = null, origIncDecS = null, sameDiff = null, evenOdd = null, widthLength = null, mustBeMultiple = null,
-            customSizeS = null, multipleS = null, plusS = null, minusS = null, type = null, unit = null;
-    TextView origNumberResTV, origIncDecText, finSizeLabel, conditionsLabel, newNumberLabel, newNumberResTV;
-
-    //data captured in spinner selection for use in calculations
-    //double pws = 0.0, pwi = 0.0, plr = 0.0, pli = 0.0, gwi = 0.0, gli = 0.0;
-
-    //data captured in layout for use in calculations
-    //double origNumberW = 0.0, origNumberL = 0.0;
-    //double customSize = 0.0;
-    //static double multiple = 0.0;
-    //static double plus = 0.0;
-    //static double minus = 0.0;
-
-    //calculated values for use in calculations
-    //DecimalFormat origNumberDec;
-    //Double pwM = 0.0, plM = 0.0, gwStperI = 0.0, glRperI = 0.0;
-    //static int sameWidth = 0;
-    //static int sameLength = 0;
-    //static int diffWidth = 0;
-    //static int diffLength = 0;
-    //String type = null;
-    //int result = 0, resultIncDec = 0;
+    String sameDiff = null, evenOdd = null, widthLength = null, mustBeMultiple = null, type = null, unit = null;
+    TextView origNumberResTV, finSizeLabel, conditionsLabel, newNumberLabel, newNumberResTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +81,6 @@ public class CalculatorLayout extends MainNavigation {
         custSizeET.setVisibility(View.GONE);
         custNumberNextBtn = findViewById(R.id.custNumberNextBtn);
         custNumberNextBtn.setVisibility(View.GONE);
-        //changeCustNumberBtn = findViewById(R.id.changeCustNumberBtn);
-        //changeCustNumberBtn.setVisibility(View.GONE);
         condRG = findViewById(R.id.condRG);
         evenRB = findViewById(R.id.evenRB);
         evenRB.setVisibility(View.GONE);
@@ -130,22 +106,6 @@ public class CalculatorLayout extends MainNavigation {
         calcBtn.setVisibility(View.GONE);
         calcResBtn = findViewById(R.id.calcResBtn);
         calcResBtn.setVisibility(View.GONE);
-        //changeSameDiffBtn = findViewById(R.id.changeSameDiffBtn);
-        //changeSameDiffBtn.setVisibility(View.GONE);
-        //origNumberLText = findViewById(R.id.origNumberLText);
-        //origNumberLText.setVisibility(View.GONE);
-        //origIncDecText = findViewById(R.id.origIncDecText);
-        //origIncDecText.setVisibility(View.GONE);
-        //origNumberLResultText = findViewById(R.id.origNumberLResultText);
-        //origNumberLResultText.setVisibility(View.GONE);
-        //nextOrigNumbersLButton = findViewById(R.id.nextOrigNumbersLButton);
-        //nextOrigNumbersLButton.setVisibility(View.GONE);
-        //calc2Button = findViewById(R.id.calc2Button);
-        //calc2Button.setVisibility(View.GONE);
-        //calc3Button = findViewById(R.id.calc3Button);
-        //calc3Button.setVisibility(View.GONE);
-        //calcResButton = findViewById(R.id.calcResButton);
-        //calcResButton.setVisibility(View.GONE);
 
         //set spinner for choose project
         spinner = findViewById(R.id.chooseProjectSpinner);
@@ -161,11 +121,9 @@ public class CalculatorLayout extends MainNavigation {
         sameDiffRG.setOnCheckedChangeListener(onChangeSameDiff);
         custSizeET.addTextChangedListener(onChangeCustomSize);
         custNumberNextBtn.setOnClickListener(onClickCustNumberNextBtn);
-        //changeCustNumberBtn.setOnClickListener(onClickChangeCustNumberBtn);
-        //condRG.setOnCheckedChangeListener(onChangeConditions);
+        condRG.setOnCheckedChangeListener(onChooseConditions);
         calcBtn.setOnClickListener(onClickCalcBtn);
         calcResBtn.setOnClickListener(onClickResetButton);
-        //nextOrigNumbersLButton.setOnClickListener(onClickNextOrigNumbersLButton);
     }
 
     public void backToCalculator() {
@@ -173,223 +131,6 @@ public class CalculatorLayout extends MainNavigation {
         backToCalculator.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         startActivity(backToCalculator);
     }
-
-    /*public String unitUnit() {
-        return unit;
-    }*/
-
-        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                //retrieve project data from spinner selection
-                pws = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PWS)));
-                pwi = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PWI)));
-                plr = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PLR)));
-                pli = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PLI)));
-                gwi = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.GWI)));
-                gli = gen.dblFromSource(cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.GLI)));*/
-
-                /*String pwsS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PWS));
-                if (pwsS != null && !pwsS.equals("")) {
-                    pws = Double.valueOf(pwsS);
-                } else {
-                    pws = 0.0;
-                }
-
-                String pwiS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PWI));
-                if (pwiS != null && !pwiS.equals("")) {
-                    pwi = Double.valueOf(pwiS);
-                } else {
-                    pwi = 0.0;
-                }
-
-                String plrS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PLR));
-                if (plrS != null && !plrS.equals("")) {
-                    plr = Double.valueOf(plrS);
-                } else {
-                    plr = 0.0;
-                }
-
-                String pliS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.PLI));
-                if (pliS != null && !pliS.equals("")) {
-                    pli = Double.valueOf(pliS);
-                } else {
-                    pli = 0.0;
-                }
-
-                String gwiS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.GWI));
-                if (gwiS != null && !gwiS.equals("")) {
-                    gwi = Double.valueOf(gwiS);
-                } else {
-                    gwi = 0.0;
-                }
-
-                String gliS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.GLI));
-                if (gliS != null && !gliS.equals("")) {
-                    gli = Double.valueOf(gliS);
-                } else {
-                    gli = 0.0;
-                }*/
-
-                /*String unitS = cursor.getString(cursor.getColumnIndex(ProjectsDbHelper.UNIT));
-                if (unitS != null && !unitS.equals("")) {
-                    unit = unitS;
-                } else {
-                    unit = null;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
-
-    //handle RadioGroup for question 2
-    //calcPurposeRadioGroup = findViewById(R.id.calcPurposeRadioGroup);
-        /*calcPurposeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                if (checkedId == R.id.castOnRadioButton) {
-
-                    increaseDecreaseRadioButton.setVisibility(View.GONE);
-                    lengthRadioButton.setVisibility(View.GONE);
-                    widthRadioButton.setVisibility(View.GONE);
-
-                    origNumberText.setVisibility(View.VISIBLE);
-                    nextOrigNumbersButton.setVisibility(View.VISIBLE);
-
-                    widthLength = "width";
-
-                } else if (checkedId == R.id.increaseDecreaseRadioButton) {
-
-                    castOnRadioButton.setVisibility(View.GONE);
-                    lengthRadioButton.setVisibility(View.GONE);
-                    widthRadioButton.setVisibility(View.GONE);
-
-                    origIncDecText.setVisibility(View.VISIBLE);
-                    calc2Button.setVisibility(View.VISIBLE);
-
-                    widthLength = "width";
-                    sameSize = "same";
-
-                    calc2Button.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            calc2Button.setVisibility(View.GONE);
-                            newNumberLabel.setVisibility(View.VISIBLE);
-                            newNumberResult.setVisibility(View.VISIBLE);
-                            calcResButton.setVisibility(View.VISIBLE);
-
-                            if (unit == null) {
-                                Toast.makeText(getBaseContext(), R.string.no_data_warning,
-                                        Toast.LENGTH_LONG).show();
-                                calc2Button.setVisibility(View.VISIBLE);
-                                newNumberLabel.setVisibility(View.GONE);
-                                newNumberResult.setVisibility(View.GONE);
-                                calcResButton.setVisibility(View.GONE);
-                            } else {
-
-                                origIncDecS = origIncDecText.getText().toString();
-                                if (!origIncDecS.equals("")) {
-                                    origNumberW = Double.valueOf(origIncDecS);
-
-                                } else {
-                                    origNumberW = 0.0;
-                                    Toast.makeText(getBaseContext(), R.string.no_number_warning,
-                                            Toast.LENGTH_LONG).show();
-                                    calc2Button.setVisibility(View.VISIBLE);
-                                    newNumberLabel.setVisibility(View.GONE);
-                                    newNumberResult.setVisibility(View.GONE);
-                                    calcResButton.setVisibility(View.GONE);
-                                }
-
-                                resultIncDec = (int) Math.round((origNumberW / (pws / pwi)) * (10 / gwi));
-
-                                newNumberLabel.setText(calculateType());
-                                newNumberResult.setText(String.valueOf(resultIncDec));
-                            }
-
-                            calcResButton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    backToCalculator = new Intent(CalculatorLayout.this, CalculatorLayout.class);
-                                    backToCalculator.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                    startActivity(backToCalculator);
-                                }
-                            });
-                        }
-                    });
-
-                } else if (checkedId == R.id.widthRadioButton) {
-
-                    castOnRadioButton.setVisibility(View.GONE);
-                    increaseDecreaseRadioButton.setVisibility(View.GONE);
-                    lengthRadioButton.setVisibility(View.GONE);
-
-                    origNumberText.setVisibility(View.VISIBLE);
-                    nextOrigNumbersButton.setVisibility(View.VISIBLE);
-
-                    widthLength = "width";
-
-                } else if (checkedId == R.id.lengthRadioButton) {
-
-                    castOnRadioButton.setVisibility(View.GONE);
-                    increaseDecreaseRadioButton.setVisibility(View.GONE);
-                    widthRadioButton.setVisibility(View.GONE);
-
-                    origNumberLText.setVisibility(View.VISIBLE);
-                    nextOrigNumbersLButton.setVisibility(View.VISIBLE);
-
-                    widthLength = "length";
-                }
-            }
-        });*/
-
-    //handle RadioGroup for question 3
-        
-        /*sameDiffRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                if (checkedId == R.id.sameRB) {
-                    sameSize = "same";
-                    same = true;
-                    diff = false;
-
-                    custSizeET.setVisibility(View.GONE);
-                    customSize = 0.0;
-                    custNumberNextBtn.setVisibility(View.GONE);
-                    changeCustNumberBtn.setVisibility(View.GONE);
-
-                    blankConditions();
-
-                    newNumberLabel.setVisibility(View.GONE);
-                    newNumberResTV.setVisibility(View.GONE);
-
-                } else if (checkedId == R.id.diffRB) {
-                    sameSize = "diff";
-                    same = false;
-                    diff = true;
-
-                    custSizeET.setVisibility(View.VISIBLE);
-                    custSizeET.setText("");
-                    custNumberNextBtn.setVisibility(View.VISIBLE);
-
-                    newNumberLabel.setVisibility(View.GONE);
-                    newNumberResTV.setVisibility(View.GONE);
-                    calcButton.setVisibility(View.GONE);
-                    calc3Button.setVisibility(View.GONE);
-                    calcResButton.setVisibility(View.GONE);
-                }
-            }
-        });*/
-
 
     AdapterView.OnItemSelectedListener onChooseProject = new AdapterView.OnItemSelectedListener() {
         @Override
@@ -434,7 +175,6 @@ public class CalculatorLayout extends MainNavigation {
 
                 origNumberET.setVisibility(View.VISIBLE);
                 calcBtn.setVisibility(View.VISIBLE);
-                //origIncDecText.setVisibility(View.VISIBLE);
 
                 widthLength = "width";
                 sameDiff = "same";
@@ -457,10 +197,6 @@ public class CalculatorLayout extends MainNavigation {
                         } else {
                             origNumber = gen.dblFromSource(origNumberET.getText().toString());
 
-                            /*origIncDecS = origIncDecText.getText().toString();
-                            if (!origIncDecS.equals("")) {
-                                origNumberW = Double.valueOf(origIncDecS);
-                            } else {*/
                             if (origNumber == 0) {
                                 Toast.makeText(getBaseContext(), R.string.no_number_warning, Toast.LENGTH_LONG).show();
                                 calcBtn.setVisibility(View.VISIBLE);
@@ -503,8 +239,6 @@ public class CalculatorLayout extends MainNavigation {
 
                 origNumberET.setVisibility(View.VISIBLE);
                 origNumberNextBtn.setVisibility(View.VISIBLE);
-                //origNumberLText.setVisibility(View.VISIBLE);
-                //nextOrigNumbersLButton.setVisibility(View.VISIBLE);
 
                 widthLength = "length";
             }
@@ -517,13 +251,10 @@ public class CalculatorLayout extends MainNavigation {
 
             if (checkedId == R.id.sameRB) {
                 sameDiff = "same";
-                //same = true;
-                //diff = false;
 
                 custSizeET.setVisibility(View.GONE);
                 customSize = 0.0;
                 custNumberNextBtn.setVisibility(View.GONE);
-                //changeCustNumberBtn.setVisibility(View.GONE);
 
                 blankConditions();
 
@@ -532,68 +263,65 @@ public class CalculatorLayout extends MainNavigation {
 
             } else if (checkedId == R.id.diffRB) {
                 sameDiff = "diff";
-                //same = false;
-                //diff = true;
 
                 custSizeET.setVisibility(View.VISIBLE);
                 custSizeET.setText("");
                 custNumberNextBtn.setVisibility(View.VISIBLE);
+                custNumberNextBtn.setText(R.string.next);
+                custNumberNextBtn.setOnClickListener(onClickCustNumberNextBtn);
 
                 newNumberLabel.setVisibility(View.GONE);
                 newNumberResTV.setVisibility(View.GONE);
                 calcBtn.setVisibility(View.GONE);
-                //calc3Button.setVisibility(View.GONE);
                 calcResBtn.setVisibility(View.GONE);
             }
         }
     };
 
-    /*public Double spinnerSel(String str1) {
-        String string = str1;
-        if (string != null && !string.equals("")) {
-            spinnerSel = Double.valueOf(string);
-        } else {
-            spinnerSel = 0.0;
+    RadioGroup.OnCheckedChangeListener onChooseConditions = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if (checkedId == R.id.evenRB) {
+                evenRB.setChecked(true);
+                evenOdd = "even";
+                mustBeMultiple = "no";
+                goneMultiple();
+                newNumberLabel.setVisibility(View.GONE);
+                newNumberResTV.setVisibility(View.GONE);
+                calcBtn.setVisibility(View.VISIBLE);
+                calcResBtn.setVisibility(View.GONE);
+            } else if (checkedId == R.id.oddRB) {
+                oddRB.setChecked(true);
+                evenOdd = "odd";
+                mustBeMultiple = "no";
+                goneMultiple();
+                newNumberLabel.setVisibility(View.GONE);
+                newNumberResTV.setVisibility(View.GONE);
+                calcBtn.setVisibility(View.VISIBLE);
+                calcResBtn.setVisibility(View.GONE);
+            } else if (checkedId == R.id.multRB) {
+                multRB.setChecked(true);
+                mustBeMultiple = "yes";
+                evenOdd = "no";
+                baseET.setVisibility(View.VISIBLE);
+                plusET.setVisibility(View.VISIBLE);
+                minusET.setVisibility(View.VISIBLE);
+                newNumberLabel.setVisibility(View.GONE);
+                newNumberResTV.setVisibility(View.GONE);
+                calcBtn.setVisibility(View.VISIBLE);
+                calcResBtn.setVisibility(View.GONE);
+            } else if (checkedId == R.id.noneRB) {
+                noneRB.setChecked(true);
+                evenOdd = "no";
+                mustBeMultiple = "no";
+                goneMultiple();
+                newNumberLabel.setVisibility(View.GONE);
+                newNumberResTV.setVisibility(View.GONE);
+                calcBtn.setVisibility(View.VISIBLE);
+                calcResBtn.setVisibility(View.GONE);
+            }
         }
-        return spinnerSel;
-    }*/
-
-    /*public void pwM() {
-        origNumberSW = origNumberText.getText().toString();
-        if (!origNumberSW.equals("")) {
-            origNumberW = Double.valueOf(origNumberSW);
-
-        } else {
-            origNumberW = 0.0;
-            Toast.makeText(getBaseContext(), R.string.no_number_warning,
-                    Toast.LENGTH_LONG).show();
-            origNumberResultText.setVisibility(View.GONE);
-            goneSameDiff();
-            nextOrigNumbersButton.setVisibility(View.VISIBLE);
-        }
-
-        pwM = (origNumberW / (pws / pwi));
-
-    }*/
-
-    /*public void plM() {
-        origNumberSL = origNumberLText.getText().toString();
-        if (!origNumberSL.equals("")) {
-            origNumberL = Double.valueOf(origNumberSL);
-
-        } else {
-            origNumberL = 0.0;
-            Toast.makeText(getBaseContext(), R.string.no_number_warning,
-                    Toast.LENGTH_LONG).show();
-            origNumberResultText.setVisibility(View.GONE);
-            goneSameDiff();
-            nextOrigNumbersLButton.setVisibility(View.VISIBLE);
-        }
-
-        plM = (origNumberL / (plr / pli));
-
-    }*/
-
+    };
 
     public int calculateResult() {
 
@@ -601,30 +329,8 @@ public class CalculatorLayout extends MainNavigation {
         plus = gen.dblFromSource(plusET.getText().toString());
         minus = gen.dblFromSource(minusET.getText().toString());
 
-        /*multipleS = numberLabel.getText().toString();
-        if (!multipleS.equals("")) {
-            multiple = Double.valueOf(multipleS);
-        } else {
-            multiple = 0.0;
-        }
-
-        plusS = plusET.getText().toString();
-        if (!plusS.equals("")) {
-            plus = Double.valueOf(plusS);
-        } else {
-            plus = 0.0;
-        }
-
-        minusS = minusET.getText().toString();
-        if (!minusS.equals("")) {
-            minus = Double.valueOf(minusS);
-        } else {
-            minus = 0.0;
-        }*/
-
         gwStperI = 10 / gwi;
         glRperI = 10 / gli;
-
         sameWidth = (int) Math.round(pwM * gwStperI);
         sameLength = (int) Math.round(plM * glRperI);
         diffWidth = (int) Math.round(customSize * gwStperI);
@@ -649,6 +355,8 @@ public class CalculatorLayout extends MainNavigation {
                         Toast.makeText(getApplication().getBaseContext(), R.string.no_number_warning, Toast.LENGTH_LONG).show();
                         newNumberLabel.setVisibility(View.GONE);
                         newNumberResTV.setVisibility(View.GONE);
+                        calcBtn.setVisibility(View.VISIBLE);
+                        calcResBtn.setVisibility(View.GONE);
                     } else if (plus > 0 && minus > 0) {
                         result = 0;
                         Toast.makeText(getApplication().getBaseContext(), R.string.plus_minus_toast, Toast.LENGTH_LONG).show();
@@ -702,6 +410,8 @@ public class CalculatorLayout extends MainNavigation {
                         Toast.makeText(getApplication().getBaseContext(), R.string.no_number_warning, Toast.LENGTH_LONG).show();
                         newNumberLabel.setVisibility(View.GONE);
                         newNumberResTV.setVisibility(View.GONE);
+                        calcBtn.setVisibility(View.VISIBLE);
+                        calcResBtn.setVisibility(View.GONE);
                     } else if (plus > 0 && minus > 0) {
                         result = 0;
                         Toast.makeText(getApplication().getBaseContext(), R.string.plus_minus_toast, Toast.LENGTH_LONG).show();
@@ -757,6 +467,8 @@ public class CalculatorLayout extends MainNavigation {
                         Toast.makeText(getApplication().getBaseContext(), R.string.no_number_warning, Toast.LENGTH_LONG).show();
                         newNumberLabel.setVisibility(View.GONE);
                         newNumberResTV.setVisibility(View.GONE);
+                        calcBtn.setVisibility(View.VISIBLE);
+                        calcResBtn.setVisibility(View.GONE);
                     } else if (plus > 0 && minus > 0) {
                         result = 0;
                         Toast.makeText(getApplication().getBaseContext(), R.string.plus_minus_toast, Toast.LENGTH_LONG).show();
@@ -810,6 +522,8 @@ public class CalculatorLayout extends MainNavigation {
                         Toast.makeText(getApplication().getBaseContext(), R.string.no_number_warning, Toast.LENGTH_LONG).show();
                         newNumberLabel.setVisibility(View.GONE);
                         newNumberResTV.setVisibility(View.GONE);
+                        calcBtn.setVisibility(View.VISIBLE);
+                        calcResBtn.setVisibility(View.GONE);
                     } else if (plus > 0 && minus > 0) {
                         result = 0;
                         Toast.makeText(getApplication().getBaseContext(), R.string.plus_minus_toast, Toast.LENGTH_LONG).show();
@@ -868,18 +582,9 @@ public class CalculatorLayout extends MainNavigation {
         diffRB.setVisibility(View.VISIBLE);
     }
 
-    /*public void goneSameDiff() {
-        finishedSizeLabel.setVisibility(View.GONE);
-        sameRadioButton.setVisibility(View.GONE);
-        diffRadioButton.setVisibility(View.GONE);
-        changeSameDiffButton.setVisibility(View.GONE);
-    }*/
-
     public void goneCustomSize() {
         custSizeET.setText("");
         custSizeET.setVisibility(View.GONE);
-        custNumberNextBtn.setVisibility(View.GONE);
-        //changeCustNumberBtn.setVisibility(View.GONE);
     }
 
     public void blankConditions() {
@@ -892,61 +597,6 @@ public class CalculatorLayout extends MainNavigation {
         oddRB.setChecked(false);
         multRB.setChecked(false);
         noneRB.setChecked(false);
-
-        condRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                if (checkedId == R.id.evenRB) {
-                    evenRB.setChecked(true);
-                    evenOdd = "even";
-                    mustBeMultiple = null;
-                    goneMultiple();
-                    newNumberLabel.setVisibility(View.GONE);
-                    newNumberResTV.setVisibility(View.GONE);
-                    calcBtn.setVisibility(View.VISIBLE);
-                    //calc3Button.setVisibility(View.GONE);
-                    calcResBtn.setVisibility(View.GONE);
-
-                } else if (checkedId == R.id.oddRB) {
-                    oddRB.setChecked(true);
-                    evenOdd = "odd";
-                    mustBeMultiple = null;
-                    goneMultiple();
-                    newNumberLabel.setVisibility(View.GONE);
-                    newNumberResTV.setVisibility(View.GONE);
-                    calcBtn.setVisibility(View.VISIBLE);
-                    //calc3Button.setVisibility(View.GONE);
-                    calcResBtn.setVisibility(View.GONE);
-
-                } else if (checkedId == R.id.multRB) {
-                    multRB.setChecked(true);
-                    mustBeMultiple = "yes";
-                    evenOdd = null;
-                    baseET.setVisibility(View.VISIBLE);
-                    plusET.setVisibility(View.VISIBLE);
-                    minusET.setVisibility(View.VISIBLE);
-                    newNumberLabel.setVisibility(View.GONE);
-                    newNumberResTV.setVisibility(View.GONE);
-                    //calc3Button.setVisibility(View.VISIBLE);
-                    calcBtn.setVisibility(View.VISIBLE);
-                    calcResBtn.setVisibility(View.GONE);
-
-                    //calc3Button.setOnClickListener(onClickCalc3Button);
-
-                } else if (checkedId == R.id.noneRB) {
-                    noneRB.setChecked(true);
-                    evenOdd = null;
-                    mustBeMultiple = null;
-                    goneMultiple();
-                    newNumberLabel.setVisibility(View.GONE);
-                    newNumberResTV.setVisibility(View.GONE);
-                    calcBtn.setVisibility(View.VISIBLE);
-                    //calc3Button.setVisibility(View.GONE);
-                    calcResBtn.setVisibility(View.GONE);
-                }
-            }
-        });
     }
 
     public void goneConditions() {
@@ -958,7 +608,7 @@ public class CalculatorLayout extends MainNavigation {
     }
 
     public void goneMultiple() {
-        mustBeMultiple = null;
+        //mustBeMultiple = "no";
         baseET.setText("");
         plusET.setText("");
         minusET.setText("");
@@ -970,204 +620,141 @@ public class CalculatorLayout extends MainNavigation {
     View.OnClickListener onClickOrigNumberNextBtn = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            origNumberNextBtn.setVisibility(View.INVISIBLE);
             origNumberResTV.setVisibility(View.VISIBLE);
 
-            origNumberDec = new DecimalFormat("#.#");
-
-            //if (unitUnit() == null) {
             if (unit == null) {
                 Toast.makeText(getApplicationContext(), getString(R.string.no_data_warning), Toast.LENGTH_LONG).show();
             } else {
+                origNumberDec = new DecimalFormat("#.#");
                 if (widthLength.equals("width")) {
                     pwM = gen.detMeasurement(
                             pws,
                             pwi,
-                            origNumberET,
-                            origNumberResTV,
-                            finSizeLabel,
-                            sameRB,
-                            diffRB,
-                            origNumberNextBtn);
+                            origNumberET);
 
                     if (pwM == 0.0) {
                         visible = false;
-                        /*Toast.makeText(getBaseContext(), R.string.no_number_warning,
-                                Toast.LENGTH_LONG).show();*/
+                        Toast.makeText(getBaseContext(), R.string.no_number_warning, Toast.LENGTH_LONG).show();
+                        origNumberResTV.setVisibility(View.GONE);
+                        finSizeLabel.setVisibility(View.GONE);
+                        sameRB.setVisibility(View.GONE);
+                        diffRB.setVisibility(View.GONE);
                         origNumberNextBtn.setVisibility(View.VISIBLE);
-                        //origNumberResTV.setVisibility(View.GONE);
-                        //goneSameDiff();
+                        origNumberNextBtn.setText(R.string.next);
                         goneCustomSize();
                         goneConditions();
                         goneMultiple();
                     } else if (pwM != 0.0) {
                         origNumberET.setVisibility(View.GONE);
+                        origNumberResTV.setVisibility(View.VISIBLE);
                         blankSameDiff();
-                        //if (unitUnit().equals("cm")) {
-                        //} else if (unitUnit().equals("inch")
-                        String stmtCm = R.string.cast_on_result + " " + origNumberDec.format(pwM) + " " + R.string.cm_label;
-                        String stmtInch = R.string.cast_on_result + " " + origNumberDec.format(pwM) + " " + R.string.inches_label;
+                        String stmtCm = getString(R.string.cast_on_result) + " " + origNumberDec.format(pwM) + " " + getString(R.string.cm_label);
+                        String stmtInch = getString(R.string.cast_on_result) + " " + origNumberDec.format(pwM) + " " + getString(R.string.inches_label);
                         if (unit.equals("cm")) {
                             origNumberResTV.setText(stmtCm);
-                            //origNumberResTV.setText(R.string.cast_on_result + " " + origNumberDec.format(pwM) + " " + R.string.cm_label);
-                            //} else if (unitUnit().equals("inch")) {
-
                         } else if (unit.equals("inch")) {
                             origNumberResTV.setText(stmtInch);
-                            //origNumberResTV.setText(getString(R.string.cast_on_result)
-                            //+ " " + origNumberDec.format(pwM) + " " + getString(R.string.inches_label));
                         }
+                        origNumberNextBtn.setVisibility(View.VISIBLE);
+                        origNumberNextBtn.setText(R.string.change_button);
+                        origNumberNextBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                origNumberResTV.setVisibility(View.GONE);
+                                origNumberET.setVisibility(View.VISIBLE);
+                                origNumberET.setText("");
+                                finSizeLabel.setVisibility(View.GONE);
+                                sameRB.setVisibility(View.GONE);
+                                diffRB.setVisibility(View.GONE);
+                                origNumberNextBtn.setText(R.string.next);
+                                origNumberNextBtn.setOnClickListener(onClickOrigNumberNextBtn);
+                            }
+                        });
                     }
                 } else if (widthLength.equals("length")) {
                     plM = gen.detMeasurement(
                             plr,
                             pli,
-                            origNumberET,
-                            origNumberResTV,
-                            finSizeLabel,
-                            sameRB,
-                            diffRB,
-                            origNumberNextBtn);
+                            origNumberET);
 
                     if (plM == 0.0) {
                         visible = false;
-                        /*Toast.makeText(getBaseContext(), R.string.no_number_warning,
-                                Toast.LENGTH_LONG).show();*/
+                        Toast.makeText(getBaseContext(), R.string.no_number_warning, Toast.LENGTH_LONG).show();
+                        origNumberResTV.setVisibility(View.GONE);
+                        finSizeLabel.setVisibility(View.GONE);
+                        sameRB.setVisibility(View.GONE);
+                        diffRB.setVisibility(View.GONE);
                         origNumberNextBtn.setVisibility(View.VISIBLE);
-                        //origNumberResTV.setVisibility(View.GONE);
-                        //goneSameDiff();
+                        origNumberNextBtn.setText(R.string.next);
+                        origNumberNextBtn.setVisibility(View.VISIBLE);
                         goneCustomSize();
                         goneConditions();
                         goneMultiple();
                     } else if (plM != 0.0) {
                         origNumberET.setVisibility(View.GONE);
-                        //origNumberLText.setVisibility(View.GONE);
+                        origNumberResTV.setVisibility(View.VISIBLE);
+                        finSizeLabel.setVisibility(View.VISIBLE);
+                        sameRB.setVisibility(View.VISIBLE);
+                        diffRB.setVisibility(View.VISIBLE);
                         blankSameDiff();
-                        //if (unitUnit() == null) {
-                        String stmtCm = R.string.cast_on_result + " " + origNumberDec.format(plM) + " " + R.string.cm_label;
-                        String stmtInch = R.string.cast_on_result + " " + origNumberDec.format(plM) + " " + R.string.inches_label;
+                        String stmtCm = getString(R.string.cast_on_result) + " " + origNumberDec.format(plM) + " " + getString(R.string.cm_label);
+                        String stmtInch = getString(R.string.cast_on_result) + " " + origNumberDec.format(plM) + " " + getString(R.string.inches_label);
                         if (unit.equals("cm")) {
                             origNumberResTV.setText(stmtCm);
-                            //} else if (unitUnit().equals("inch")) {
-
                         } else if (unit.equals("inch")) {
                             origNumberResTV.setText(stmtInch);
                         }
+                        origNumberNextBtn.setVisibility(View.VISIBLE);
+                        origNumberNextBtn.setText(R.string.change_button);
+                        origNumberNextBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                origNumberResTV.setVisibility(View.GONE);
+                                origNumberET.setVisibility(View.VISIBLE);
+                                origNumberET.setText("");
+                                finSizeLabel.setVisibility(View.GONE);
+                                sameRB.setVisibility(View.GONE);
+                                diffRB.setVisibility(View.GONE);
+                                origNumberNextBtn.setText(R.string.next);
+                                origNumberNextBtn.setOnClickListener(onClickOrigNumberNextBtn);
+                            }
+                        });
                     }
                 }
             }
         }
     };
 
-                    //pwM();
-
-            /*if (unitUnit() == null) {
-                Toast.makeText(getApplicationContext(), "You must create a project", Toast.LENGTH_LONG).show();
-            } else if (pwM == 0.0) {
-                visible = false;
-                Toast.makeText(getBaseContext(), R.string.no_number_warning,
-                        Toast.LENGTH_LONG).show();
-                origNumberNextBtn.setVisibility(View.VISIBLE);
-                origNumberResTV.setVisibility(View.GONE);
-                goneSameDiff();
-                goneCustomSize();
-                goneConditions();
-                goneMultiple();
-            } else if (pwM != 0.0) {
-                origNumberET.setVisibility(View.GONE);
-                blankSameDiff();
-                if (unitUnit().equals("cm")) {
-                    origNumberResTV.setText(getString(R.string.cast_on_result)
-                            + " " + origNumberDec.format(pwM) + " " + getString(R.string.cm_label));
-                } else if (unitUnit().equals("inch")) {
-                    origNumberResTV.setText(getString(R.string.cast_on_result)
-                            + " " + origNumberDec.format(pwM) + " " + getString(R.string.inches_label));
-                }
-            }*/
-
-    /*View.OnClickListener onClickNextOrigNumbersLButton = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            nextOrigNumbersLButton.setVisibility(View.INVISIBLE);
-            origNumberLResultText.setVisibility(View.VISIBLE);
-
-            plM();
-
-            origNumberDec = new DecimalFormat("#.#");
-
-            if (unitUnit() == null) {
-                Toast.makeText(getApplicationContext(), "You must create a project", Toast.LENGTH_LONG).show();
-            } else if (plM == 0.0) {
-                visible = false;
-                Toast.makeText(getBaseContext(), R.string.no_number_warning,
-                        Toast.LENGTH_LONG).show();
-                nextOrigNumbersLButton.setVisibility(View.VISIBLE);
-                origNumberLResultText.setVisibility(View.GONE);
-                goneSameDiff();
-                goneCustomSize();
-                goneConditions();
-                goneMultiple();
-            } else if (plM != 0.0) {
-                origNumberET.setVisibility(View.GONE);
-                //origNumberLText.setVisibility(View.GONE);
-                blankSameDiff();
-                if (unitUnit() == null) {
-                    Toast.makeText(getApplicationContext(), "You must create a project", Toast.LENGTH_LONG).show();
-                } else if (unitUnit().equals("cm")) {
-                    origNumberLResultText.setText(getString(R.string.cast_on_result)
-                            + " " + origNumberDec.format(plM) + " " + getString(R.string.cm_label));
-                } else if (unitUnit().equals("inch")) {
-                    origNumberLResultText.setText(getString(R.string.cast_on_result)
-                            + " " + origNumberDec.format(plM) + " " + getString(R.string.inches_label));
-                }
-            }
-        }
-    };*/
-
-    public void customNumbersStuff() {
-        //custNumberNextBtn.setVisibility(View.VISIBLE);
-        custNumberNextBtn.setText(R.string.change_button);
-        //changeCustNumberBtn.setVisibility(View.VISIBLE);
-
-        blankConditions();
-
-        customSize = gen.dblFromSource(custSizeET.getText().toString());
-
-        /*customSizeS = customSizeText.getText().toString();
-        if (!customSizeS.equals("")) {
-            customSize = Double.valueOf(customSizeS);
-        } else {
-            customSize = 0.0;
-        }*/
-
-        if (customSize == 0.0) {
-            Toast.makeText(getBaseContext(), R.string.no_number_warning,
-                    Toast.LENGTH_LONG).show();
-            custNumberNextBtn.setText(R.string.next);
-            //changeCustNumberBtn.setVisibility(View.GONE);
-            goneConditions();
-            goneMultiple();
-            newNumberLabel.setVisibility(View.GONE);
-            newNumberResTV.setVisibility(View.GONE);
-            calcBtn.setVisibility(View.GONE);
-            //calc3Button.setVisibility(View.GONE);
-            calcResBtn.setVisibility(View.GONE);
-        }
-    }
-
     View.OnClickListener onClickCustNumberNextBtn = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            customNumbersStuff();
+
+            blankConditions();
+
+            customSize = gen.dblFromSource(custSizeET.getText().toString());
+
+            if (customSize == 0.0) {
+                Toast.makeText(getBaseContext(), R.string.no_number_warning, Toast.LENGTH_LONG).show();
+                custNumberNextBtn.setText(R.string.next);
+                goneConditions();
+                goneMultiple();
+                newNumberLabel.setVisibility(View.GONE);
+                newNumberResTV.setVisibility(View.GONE);
+                calcBtn.setVisibility(View.GONE);
+                calcResBtn.setVisibility(View.GONE);
+            }
+
+            custNumberNextBtn.setText(R.string.change_button);
+            custNumberNextBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    custNumberNextBtn.setText(R.string.next);
+                    custSizeET.setText("");
+                    custNumberNextBtn.setOnClickListener(onClickCustNumberNextBtn);
+                }
+            });
         }
     };
-
-    /*View.OnClickListener onClickChangeCustNumberBtn = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            customNumbersStuff();
-        }
-    };*/
 
     TextWatcher onChangeCustomSize = new TextWatcher() {
         @Override
@@ -1186,58 +773,22 @@ public class CalculatorLayout extends MainNavigation {
             goneConditions();
             goneMultiple();
             calcBtn.setVisibility(View.GONE);
-            //calc3Button.setVisibility(View.GONE);
         }
     };
-
-    /*View.OnClickListener onClickCalc3Button = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            calc3Button.setVisibility(View.GONE);
-            calcBtn.setVisibility(View.GONE);
-            newNumberLabel.setVisibility(View.VISIBLE);
-            newNumberResTV.setVisibility(View.VISIBLE);
-            calcResBtn.setVisibility(View.VISIBLE);
-            calculateResult();
-
-            calcResBtn.setOnClickListener(onClickResetButton);
-
-            if (multiple == 0.0) {
-                calc3Button.setVisibility(View.VISIBLE);
-                plusET.setVisibility(View.VISIBLE);
-                minusET.setVisibility(View.VISIBLE);
-                calcResBtn.setVisibility(View.GONE);
-            }
-
-            newNumberLabel.setText(calculateType());
-            newNumberResTV.setText(String.valueOf(calculateResult()));
-        }
-    };*/
 
     View.OnClickListener onClickCalcBtn = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             calcBtn.setVisibility(View.GONE);
-            //calc3Button.setVisibility(View.GONE);
             newNumberLabel.setVisibility(View.VISIBLE);
             newNumberResTV.setVisibility(View.VISIBLE);
             calcResBtn.setVisibility(View.VISIBLE);
 
-            if (mustBeMultiple.equals("yes")) {
-                if (multiple == 0.0) {
-                    calcBtn.setVisibility(View.VISIBLE);
-                    plusET.setVisibility(View.VISIBLE);
-                    minusET.setVisibility(View.VISIBLE);
-                    calcResBtn.setVisibility(View.GONE);
-                }
-            }
-
-            //calculateResult();
-
-            //calcResBtn.setOnClickListener(onClickResetButton);
+            calculateResult();
 
             newNumberLabel.setText(calculateType());
             newNumberResTV.setText(String.valueOf(calculateResult()));
+
         }
     };
 

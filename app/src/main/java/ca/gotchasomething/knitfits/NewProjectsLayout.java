@@ -39,33 +39,30 @@ import ca.gotchasomething.knitfits.data.ProjectsDbManager;
 
 public class NewProjectsLayout extends MainNavigation {
 
-    private static final int PICK_IMAGE = 100;
     private static int RESULT_LOAD_IMAGE = 1;
     private static final int REQUEST_CODE = 1;
-    private ProjectsDbManager listManager;
-    ProjectsDbHelper helper;
-    SQLiteDatabase db;
-    Cursor cursor;
-    ProjectsDb project;
-    Button saveProjectButton, cancelButton;
-    RadioGroup cmInchRadioGroup;
-    RadioButton cmRadioButton, inchRadioButton;
-    RelativeLayout newProjectLayout;
-    ImageView insertProjectImageView;
-    Uri imageUri;
-    InputStream imageStream;
-    EditText projectNameText, pwsText, pwiText, plrText, pliText, gwiText, gliText;
-    TextView cmLabel, inchesLabel, cm2Label, inches2Label, cmTimesLabel, inchesTimesLabel, cm3Label, inches3Label;
     Bitmap selectedImage, bitmap;
-    byte[] image = null, byteArray;
-    String picturePath, name, pwsS, pws, pwiS, pwi, plrS, plr, pliS, pli, gwiS, gwi, gliS, gli;
-    long id;
+    Button saveProjectButton, cancelButton;
+    byte[] byteArray;
+    Cursor cursor;
+    EditText projectNameText, pwsText, pwiText, plrText, pliText, gwiText, gliText;
+    General gen;
+    ImageView insertProjectImageView;
+    InputStream imageStream;
+    int clicked2 = 0, imageSize = 0, clickedE2 = 0;
     Intent askForRating, i, i2, i4, i5;
-    int clicked2 = 0, imageSize = 0;
-    String clicked2S, unit;
+    long id;
+    private ProjectsDbManager listManager;
+    ProjectsDb project;
+    ProjectsDbHelper helper;
+    RadioButton cmRadioButton, inchRadioButton;
+    RadioGroup cmInchRadioGroup;
+    RelativeLayout newProjectLayout;
     SharedPreferences sp, spE;
-    int clickedE2 = 0;
-    String clickedE2S;
+    SQLiteDatabase db;
+    String clicked2S, unit = null, clickedE2S;
+    TextView cmLabel, inchesLabel, cm2Label, inches2Label, cmTimesLabel, inchesTimesLabel, cm3Label, inches3Label;
+    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +78,7 @@ public class NewProjectsLayout extends MainNavigation {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         listManager = new ProjectsDbManager(this);
+        gen = new General();
 
         insertProjectImageView = findViewById(R.id.insertProjectImageView);
         projectNameText = findViewById(R.id.projectNameText);
@@ -215,83 +213,29 @@ public class NewProjectsLayout extends MainNavigation {
 
             if (imageViewToByte(insertProjectImageView) == null) {
                 Toast.makeText(getBaseContext(), R.string.image_too_large, Toast.LENGTH_LONG).show();
-                //image = null;
             } else {
 
-                name = projectNameText.getText().toString();
-
-                image = imageViewToByte(insertProjectImageView);
-
-                if (unit == "cm") {
-                    unit = "cm";
-                } else if (unit == "inch") {
-                    unit = "inch";
-                }
-
-                pwsS = pwsText.getText().toString();
-                if (!pwsS.equals("")) {
-                    pws = String.valueOf(pwsS);
-                } else {
-                    pws = String.valueOf(0.0);
-                }
-
-                pwiS = pwiText.getText().toString();
-                if (!pwiS.equals("")) {
-                    pwi = String.valueOf(pwiS);
-                } else {
-                    pwi = String.valueOf(0.0);
-                }
-
-                plrS = plrText.getText().toString();
-                if (!plrS.equals("")) {
-                    plr = String.valueOf(plrS);
-                } else {
-                    plr = String.valueOf(0.0);
-                }
-
-                pliS = pliText.getText().toString();
-                if (!pliS.equals("")) {
-                    pli = String.valueOf(pliS);
-                } else {
-                    pli = String.valueOf(0.0);
-                }
-
-                gwiS = gwiText.getText().toString();
-                if (!gwiS.equals("")) {
-                    gwi = String.valueOf(gwiS);
-                } else {
-                    gwi = String.valueOf(0.0);
-                }
-
-                gliS = gliText.getText().toString();
-                if (!gliS.equals("")) {
-                    gli = String.valueOf(gliS);
-                } else {
-                    gli = String.valueOf(0.0);
-                }
-
                 project = new ProjectsDb(
-                        name,
-                        image,
+                        gen.stringFromSource(projectNameText.getText().toString()),
+                        imageViewToByte(insertProjectImageView),
                         unit,
-                        pws,
-                        pwi,
-                        plr,
-                        pli,
-                        gwi,
-                        gli,
+                        gen.stringFromSource(pwsText.getText().toString()),
+                        gen.stringFromSource(pwiText.getText().toString()),
+                        gen.stringFromSource(plrText.getText().toString()),
+                        gen.stringFromSource(pliText.getText().toString()),
+                        gen.stringFromSource(gwiText.getText().toString()),
+                        gen.stringFromSource(gliText.getText().toString()),
                         0);
 
-                if (Double.valueOf(pws) == 0.0 || Double.valueOf(pwi) == 0.0 || Double.valueOf(plr) == 0.0 ||
-                        Double.valueOf(pli) == 0.0 || Double.valueOf(gwi) == 0.0 || Double.valueOf(gli) == 0.0) {
+                if (gen.dblFromSource(pwsText.getText().toString()) == 0.0 || gen.dblFromSource(pwiText.getText().toString()) == 0.0 || gen.dblFromSource(plrText.getText().toString()) == 0.0 ||
+                        gen.dblFromSource(pliText.getText().toString()) == 0.0 || gen.dblFromSource(gwiText.getText().toString()) == 0.0 || gen.dblFromSource(gliText.getText().toString()) == 0.0) {
                     Toast.makeText(getBaseContext(), R.string.no_zeros_allowed,
                             Toast.LENGTH_LONG).show();
 
                 } else {
 
                     listManager.addProject(project);
-                    Toast.makeText(getBaseContext(), R.string.project_saved,
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), R.string.project_saved, Toast.LENGTH_LONG).show();
 
                     noRatingsYet();
                 }
